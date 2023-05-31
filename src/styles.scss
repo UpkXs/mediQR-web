@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'src/sass/libs/bootstrap-reboot';
+@import 'src/sass/libs/bootstrap-grid';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@import 'src/sass/base/variables';
+@import 'src/sass/base/mixins';
+
+* {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+p, h1 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+@import 'src/sass/blocks/title';
+@import 'src/sass/blocks/button';
+@import 'src/sass/blocks/modal';
+@import 'src/sass/blocks/media';
+@import 'src/sass/blocks/page01';
+@import 'src/sass/blocks/page02';
+@import 'src/sass/blocks/page03';

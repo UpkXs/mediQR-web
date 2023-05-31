@@ -1,0 +1,102 @@
+.location {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-top: 18px;
+    &__name {
+        padding: 3px 0 0 7px;
+        color: $second-color;
+    }
+}
+
+.circular-progress {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 60px;
+    border-radius: 50%;
+    
+    .circle-text {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+        .queue-number {
+            position: block;
+            margin: 65px auto 0 auto;
+            width: 172px;
+            color: $second-color;
+            text-align: center;
+        }
+        
+        .number-of-people {
+            position: block;
+            margin: 22px auto 0 auto;
+            width: 220px;
+            color: $main-color;
+            text-align: center;
+        }
+        
+        .waiting-time {
+            position: block;
+            margin: 22px auto 0 auto;
+            width: 140px;
+            color: $second-color;
+            text-align: center;
+        }
+    }
+}
+
+.circular-progress.center {
+    position: absolute;
+    margin-top: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.circular-progress::before {
+    content: "";
+    position: absolute;
+    width: 84%;
+    height: 84%;
+    background-color: $white;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.notification-button {
+    display: block;
+    margin: 24px auto 0 auto;
+    width: 280px;
+    color: $white;
+}
+
+.notification-button.inactive {
+    display: none; 
+}
+
+.leave-button {
+    display: block;
+    margin: 12px auto 0 auto;
+    width: 280px;
+    background-color: $inactive-blue;
+    color: $white;
+}
+
+.leave-button.inactive {
+    display: none; 
+}
+
+.codes {
+    position: absolute;
+    color: $second-color;
+    left: 50%;
+    bottom: 18px;
+    transform: translate(-50%);
+    width: 250px;
+    text-align: center;
+}

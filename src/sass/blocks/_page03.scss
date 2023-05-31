@@ -1,0 +1,55 @@
+.page03 {
+    width: 280px;
+    display: block;
+    margin: 59px auto 0 auto;
+}
+
+.queue-text {
+    .last-descr {
+        text-align: center;
+        color: $second-color;
+    }
+
+    .last-number {
+        margin-top: 12px;
+        text-align: center;
+        color: $main-color;
+    }
+
+    .number-visitors {
+        margin-top: 12px;
+        text-align: center;
+        color: $second-color;
+    }
+}
+
+.call-buttons {
+    width: 280px;
+    text-align: center;
+    color: $white;
+    &__next {
+        margin-top: 24px;
+    }
+
+    &__number {
+        margin-top: 12px;
+        background-color: $inactive-blue;
+    }
+
+    &__remove {
+        margin-top: 12px;
+        background-color: $inactive-blue;
+    }
+}
+
+.call-buttons__next:disabled {
+    opacity: .6;
+}
+
+.call-buttons__number:disabled {
+    opacity: .6;
+}
+
+.call-buttons__remove:disabled {
+    opacity: .6;
+}
