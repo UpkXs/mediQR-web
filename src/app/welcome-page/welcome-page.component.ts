@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {SubSink} from "../../utils/SubSink";
+import {WelcomePageController} from "../../controllers/WelcomePageController";
+import {tap} from "rxjs";
 
 @Component({
   selector: 'mediQR-welcome-page',
@@ -12,7 +15,11 @@ export class WelcomePageComponent implements OnInit {
 
   reasonsMap: Map<string, string> = new Map<string, string>();
 
-  constructor() { }
+  private readonly subs = new SubSink();
+
+  constructor(
+    private readonly welcomePageController: WelcomePageController,
+  ) { }
 
   ngOnInit(): void {
     this.reasonsMap.set('ZwyX8o5q', 'Doctor\'s appointment');
@@ -25,12 +32,22 @@ export class WelcomePageComponent implements OnInit {
     this.reasonsMap.forEach((map) => {
       console.log('O7PGJuKM :: map : ', map);
     })
+
+    this.loadReasons();
   }
 
   openOrClosePopover() {
     console.log('rxZ3EZ1BSe :: this.isOpenPopover : before', this.isOpenPopover);
     this.isOpenPopover = !this.isOpenPopover;
     console.log('rxZ3EZ1BSe :: this.isOpenPopover : after', this.isOpenPopover);
+  }
+
+  loadReasons() {
+    this.subs.sink = this.welcomePageController.loadReasons().pipe(
+      tap((value) => {
+        console.log('VE4C56C4hs :: value : ', value);
+      })
+    ).subscribe();
   }
 
 }
