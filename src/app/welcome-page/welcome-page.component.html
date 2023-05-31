@@ -1,1 +1,52 @@
-<p>welcome-page works!</p>
+<div class="vector-top">
+  <img src="assets/icons/vector_top.svg" alt="vector_top">
+</div>
+
+<div class="container">
+  <div class="logo-icon">
+    <img src="assets/icons/logo_icon.svg" alt="logo_icon">
+  </div>
+
+  <div class="welcome-subtitle title title_fw700 title_fw700_fz20"
+  >
+    Welcome to the MediQR real time queue system!
+  </div>
+
+  <div class="welcome-title title title_fw400 title_fw400_fz16"
+  >
+    Please choose a reason for visiting:
+  </div>
+
+  <div
+    class="dropdown"
+    (click)="openOrClosePopover()"
+  >
+    <input
+      type="text"
+      class="textBox title_fw400 title_fw400_fz16"
+      [placeholder]="reasonDisplayValue"
+      readonly
+    >
+
+    <ng-template></ng-template>
+
+    <div *ngIf="isOpenPopover">
+      <div
+        *ngFor="let map in reasonsMap"
+        class="option title_fw400 title_fw400_fz16"
+      >
+        <div>
+          {{map.value}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="page02.html">
+    <button class="next-button button title title_fw500 title_fw500_fz16">Next</button>
+  </a>
+</div>
+
+<div class="vector-bottom">
+  <img src="assets/icons/vector_bottom.svg" alt="vector_bottom">
+</div>
