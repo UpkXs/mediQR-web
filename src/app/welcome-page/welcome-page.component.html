@@ -32,7 +32,7 @@
 
     <div *ngIf="isOpenPopover">
       <div
-        *ngFor="let map in reasonsMap"
+        *ngFor="let map of reasonsMap | keyvalue"
         class="option title_fw400 title_fw400_fz16"
       >
         <div>
