@@ -65,6 +65,6 @@ export class WelcomePageComponent implements OnInit {
   }
 
   navigateNextPage() {
-    this.router.navigate(['/res', this.reasonDisplayValue]).then();
+    this.router.navigate(['/queue-page', this.reasonDisplayValue]).then();
   }
 }
