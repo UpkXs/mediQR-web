@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import {HttpClientModule} from "@angular/common/http";
+import { QueuePageComponent } from './queue-page/queue-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WelcomePageComponent
+    WelcomePageComponent,
+    QueuePageComponent
   ],
   imports: [
     BrowserModule,
