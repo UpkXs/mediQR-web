@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SubSink} from "../../utils/SubSink";
 import {WelcomePageController} from "../../controllers/WelcomePageController";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'mediQR-welcome-page',
@@ -18,6 +19,7 @@ export class WelcomePageComponent implements OnInit {
 
   constructor(
     private readonly welcomePageController: WelcomePageController,
+    private readonly router: Router,
   ) {
   }
 
@@ -26,9 +28,7 @@ export class WelcomePageComponent implements OnInit {
   }
 
   openOrClosePopover() {
-    console.log('rxZ3EZ1BSe :: this.isOpenPopover : before', this.isOpenPopover);
     this.isOpenPopover = !this.isOpenPopover;
-    console.log('rxZ3EZ1BSe :: this.isOpenPopover : after', this.isOpenPopover);
   }
 
   loadReasons() {
@@ -56,4 +56,15 @@ export class WelcomePageComponent implements OnInit {
     });
   }
 
+  onChange(value: string) {
+    this.reasonDisplayValue = value;
+  }
+
+  isReasonSelected(): boolean {
+    return this.reasonDisplayValue !== 'Choose';
+  }
+
+  navigateNextPage() {
+    this.router.navigate(['/res', this.reasonDisplayValue]).then();
+  }
 }

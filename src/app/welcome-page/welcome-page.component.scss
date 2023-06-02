@@ -71,13 +71,13 @@
     max-height: 128px;
     overflow-y: auto;
 
-    div {
+    .option-label {
       padding: 21px 0 22px 14px;
       color: $second-color;
       cursor: pointer;
     }
 
-    div:hover {
+    .option-label:hover {
       background: $inactive-blue;
       color: $white;
     }
@@ -98,47 +98,45 @@
   }
 }
 
-//.dropdown::before {
-//  content: '';
-//  position: absolute;
-//  right: 22px;
-//  top: 20px;
-//  z-index: 100;
-//  width: 14px;
-//  height: 14px;
-//  border: 2px solid $inactive-blue;
-//  border-top: 2px solid $white;
-//  border-right: 2px solid $white;
-//  transform: rotate(-45deg);
-//  transition: 0.5s;
-//  pointer-events: none;
-//}
-//
-//.dropdown.active::before {
-//  transform: rotate(-225deg);
-//  top: 28px;
-//}
-//
-//.dropdown.active {
-//  .option {
-//    display: block;
-//  }
-//}
-//
-//.next-button {
-//  display: none;
-//  margin: 12px auto 0 auto;
-//  width: 110px;
-//  color: $white;
-//}
-//
-//.next-button.active {
-//  display: block;
-//}
-//
-//.next-button.nonactive {
-//  display: none;
-//}
+.dropdown::before {
+  content: '';
+  position: absolute;
+  right: 22px;
+  top: 20px;
+  z-index: 100;
+  width: 14px;
+  height: 14px;
+  border: 2px solid $inactive-blue;
+  border-top: 2px solid $white;
+  border-right: 2px solid $white;
+  transform: rotate(-45deg);
+  transition: 0.5s;
+  pointer-events: none;
+}
+
+.dropdown-active::before {
+  transform: rotate(-225deg);
+  top: 28px;
+}
+
+.dropdown-active {
+
+  .option {
+    display: block;
+  }
+}
+
+.next-button {
+  display: none;
+  margin: 12px auto 0 auto;
+  width: 110px;
+  color: $white;
+
+  &.active {
+    display: block;
+  }
+
+}
 
 .vector-bottom {
   position: absolute;

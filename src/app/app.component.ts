@@ -15,8 +15,6 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit() {
-    console.log('oiUnx1WGl5 :: app-root : started')
     this.router.navigate(['/welcome-page']).then();
-    console.log('mg2RCmZ38B :: app-root : finished')
   }
 }

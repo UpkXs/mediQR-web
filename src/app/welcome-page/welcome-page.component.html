@@ -19,21 +19,24 @@
 
   <div
     class="dropdown"
+    [class.dropdown-active]="isOpenPopover"
     (click)="openOrClosePopover()"
   >
     <input
       type="text"
       class="textBox title_fw400 title_fw400_fz16"
-      [placeholder]="reasonDisplayValue"
       readonly
+      [placeholder]="reasonDisplayValue"
     >
 
-    <ng-template></ng-template>
-
-    <div *ngIf="isOpenPopover">
+    <div
+      *ngIf="isOpenPopover"
+      class="option title_fw400 title_fw400_fz16"
+    >
       <div
+        class="option-label"
         *ngFor="let map of reasonsMap | keyvalue"
-        class="option title_fw400 title_fw400_fz16"
+        (click)="onChange(map.value)"
       >
         <div>
           {{map.value}}
@@ -42,9 +45,14 @@
     </div>
   </div>
 
-  <a href="page02.html">
-    <button class="next-button button title title_fw500 title_fw500_fz16">Next</button>
-  </a>
+  <button
+    class="next-button button title title_fw500 title_fw500_fz16"
+    [class.active]="isReasonSelected() && !isOpenPopover"
+    (click)="navigateNextPage()"
+  >
+    Next
+  </button>
+
 </div>
 
 <div class="vector-bottom">
