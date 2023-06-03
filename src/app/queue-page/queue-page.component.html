@@ -15,6 +15,12 @@
       <!--      todo aro add progress bar-->
       <p>{{reason}}</p>
 
+      <mediQR-progress-bar
+        [queueNumber]="queueNumber"
+        [numberOfPeople]="getPeopleCount()"
+      >
+      </mediQR-progress-bar>
+
 
       <button class="notification-button button"
       >
