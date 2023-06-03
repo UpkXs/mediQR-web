@@ -1,6 +1,7 @@
 export interface Queue {
-  id: string,
+  queueId: string,
   verificationCode: string;
+  queueCode: number,
   queueNumber: number
   reason: string,
   isLeaved?: boolean,
