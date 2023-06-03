@@ -10,7 +10,7 @@ export class QueuePageComponent implements OnInit {
   reason: string;
   locationName: string = 'Algamed in Almaty'
   verificationCode: string = '7X1wi';
-  queue: string = '309109';
+  queueNumber: string = '309109';
 
   constructor(
     private readonly route: ActivatedRoute,
