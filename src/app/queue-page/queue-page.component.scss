@@ -1,0 +1,27 @@
+@import "src/styles";
+
+.location {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin-top: 18px;
+}
+
+.location__name {
+  padding: 3px 0 0 7px;
+  color: $second-color;
+}
+
+.notification-button {
+  display: block;
+  margin: 24px auto 0 auto;
+  width: 280px;
+  color: $white;
+}
+
+.leave-button {
+  display: block;
+  margin: 12px auto 0 auto;
+  width: 280px;
+  color: $white;
+}

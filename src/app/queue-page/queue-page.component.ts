@@ -8,6 +8,7 @@ import {ActivatedRoute, Params} from "@angular/router";
 })
 export class QueuePageComponent implements OnInit {
   reason: string;
+  locationName: string = 'Algamed in Almaty'
 
   constructor(
     private readonly route: ActivatedRoute,
