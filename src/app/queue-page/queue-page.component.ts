@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
+import {generateRandomNumber, generateRandomUtil} from "../../utils/GenerateRandomUtil";
 
 @Component({
   selector: 'mediQR-queue-page',
@@ -9,8 +10,8 @@ import {ActivatedRoute, Params} from "@angular/router";
 export class QueuePageComponent implements OnInit {
   reason: string;
   locationName: string = 'Algamed in Almaty'
-  verificationCode: string = '7X1wi';
-  queueNumber: string = '309109';
+  verificationCode: string;
+  queueNumber: number;
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -20,6 +21,10 @@ export class QueuePageComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.reason = params['reason'];
     });
+
+    this.verificationCode = generateRandomUtil(5);
+    this.queueNumber = generateRandomNumber(3);
   }
+
 
 }
