@@ -25,3 +25,13 @@
   width: 280px;
   color: $white;
 }
+
+.codes {
+  position: absolute;
+  color: $second-color;
+  left: 50%;
+  bottom: 18px;
+  transform: translate(-50%);
+  width: 250px;
+  text-align: center;
+}
