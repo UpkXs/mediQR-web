@@ -7,6 +7,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import {HttpClientModule} from "@angular/common/http";
 import { QueuePageComponent } from './queue-page/queue-page.component';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ProgressBarComponent } from './progress-bar/progress-bar.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

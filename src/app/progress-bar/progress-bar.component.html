@@ -1,33 +1,11 @@
-<div class="progress-wrapper">
-<!--  <div-->
-<!--    class="progress-bar"-->
-<!--    [style.transform]="getProgressTransform()"-->
-<!--  >-->
-<!--  </div>-->
-
-  <div class="progress-info">
-    <div class="queue-number title title_fw400 title_fw400_fz16"
-    >
-      Your number is
-      <span class="title title_fw600 title_fw600_fz16"
-      >
-        #{{queueNumber}}
-      </span>
-    </div>
-
-    <div class="number-of-people title title_fw700 title_fw700_fz28"
-    >
-      in front of you {{numberOfPeople}} people
-    </div>
-
-    <div class="waiting-time title title_fw400 title_fw400_fz16"
-    >
-      Left to wait
-      <br>
-      <span class="title title_fw600 title_fw600_fz16"
-      >
-        ≈{{getWaitingMinutes()}} minutes
-      </span>
-    </div>
+<div
+  #progBar
+  class="progress-wrapper"
+>
+  <div
+    #progContainer
+    class="progress-container"
+  >
+    0%
   </div>
 </div>
