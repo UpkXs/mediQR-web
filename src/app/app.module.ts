@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import {HttpClientModule} from "@angular/common/http";
 import { QueuePageComponent } from './queue-page/queue-page.component';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomePageComponent,
-    QueuePageComponent
+    QueuePageComponent,
+    ProgressBarComponent
   ],
   imports: [
     BrowserModule,
