@@ -13,6 +13,9 @@
       </div>
 
       <mediQR-progress-bar
+        *ngIf="queueNumber !== undefined &&
+               queueCount !== undefined &&
+               queueCountWithoutMe !== undefined"
         [queueNumber]="queueNumber"
         [numberOfPeople]="queueCountWithoutMe"
       >

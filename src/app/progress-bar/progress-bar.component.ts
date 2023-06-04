@@ -33,7 +33,14 @@ export class ProgressBarComponent {
 
     const sub = timer$.subscribe((sec) => {
       this.currentMinute = ((this.progressEndValue - (sec * 100)) / 60).toFixed(0);
-      this.currentMinute = this.currentMinute.length > 3 ? this.currentMinute.charAt(0) : '1';
+
+      if (this.currentMinute.length === 5) {
+        this.currentMinute = this.currentMinute.charAt(0) + this.currentMinute.charAt(1);
+      } else if (this.currentMinute.length === 4) {
+        this.currentMinute = this.currentMinute.charAt(0);
+      } else {
+        this.currentMinute = '1';
+      }
 
       this.progressValue = Number.parseFloat((this.progressValue + 0.1).toFixed(1));
 
@@ -47,6 +54,7 @@ export class ProgressBarComponent {
       }
 
       if (this.progressValue === this.progressEndValue / 1000) {
+        console.log("fX3lroOq :: this.progressValue === this.progressEndValue / 1000 : ", this.progressValue === this.progressEndValue / 1000);
         sub.unsubscribe();
       }
     });
