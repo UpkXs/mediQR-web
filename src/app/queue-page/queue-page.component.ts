@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {generateRandomNumber, generateRandomString} from "../../utils/GenerateRandomString";
 import {Queue} from "../../model/Queue";
 import {QueuePageController} from "../../controllers/QueuePageController";
@@ -23,11 +23,13 @@ export class QueuePageComponent implements OnInit {
   queue: Queue;
   queueCount: number;
   queueCountWithoutMe: number;
+  deleted: boolean = false;
 
   private readonly subs = new SubSink();
 
   constructor(
     private readonly route: ActivatedRoute,
+    private readonly router: Router,
     private readonly queuePageController: QueuePageController,
   ) { }
 
@@ -72,6 +74,19 @@ export class QueuePageComponent implements OnInit {
       tap((countWithoutMe) => {
         this.queueCountWithoutMe = countWithoutMe;
         console.log("25yeH9kM :: this.queueCountWithoutMe : ", this.queueCountWithoutMe);
+      })
+    ).subscribe();
+  }
+
+  leaveQueueAndLogout(queueId: string) {
+    this.subs.sink = this.queuePageController.leaveQueueById(queueId).pipe(
+      tap((deleted) => {
+        this.deleted = !!deleted;
+      }),
+      tap(() => {
+        if (this.deleted) {
+          this.router.navigate(['/welcome-page']).then();
+        }
       })
     ).subscribe();
   }
