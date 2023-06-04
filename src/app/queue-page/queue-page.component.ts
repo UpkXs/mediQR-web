@@ -23,7 +23,7 @@ export class QueuePageComponent implements OnInit {
   queue: Queue;
   queueCount: number;
   queueCountWithoutMe: number;
-  deleted: boolean = false;
+  delete: boolean = false;
 
   private readonly subs = new SubSink();
 
@@ -78,16 +78,7 @@ export class QueuePageComponent implements OnInit {
     ).subscribe();
   }
 
-  leaveQueueAndLogout(queueId: string) {
-    this.subs.sink = this.queuePageController.leaveQueueById(queueId).pipe(
-      tap((deleted) => {
-        this.deleted = !!deleted;
-      }),
-      tap(() => {
-        if (this.deleted) {
-          this.router.navigate(['/welcome-page']).then();
-        }
-      })
-    ).subscribe();
+  leaveQueueAndLogout() {
+    this.delete = true;
   }
 }

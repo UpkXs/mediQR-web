@@ -29,7 +29,7 @@
 
       <button
         class="leave-button button"
-        (click)="leaveQueueAndLogout(queueId)"
+        (click)="leaveQueueAndLogout()"
       >
         Leave queue
       </button>
@@ -41,3 +41,9 @@
     </div>
   </div>
 </div>
+
+<mediQR-overlay
+  *ngIf="delete"
+  [queueId]="queueId"
+>
+</mediQR-overlay>

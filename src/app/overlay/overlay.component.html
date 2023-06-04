@@ -1,0 +1,33 @@
+<div class="overlay" #overlay>
+  <div class="modal" id="leave">
+    <div
+      class="modal__close"
+      (click)="cancel()"
+    >
+      <img src="assets/icons/cross-icon.svg" alt="cross-icon">
+    </div>
+
+    <div class="modal__icon">
+      <img src="assets/icons/exclamation-icon.svg" alt="exclamation-icon">
+    </div>
+
+    <div class="modal__subtitle title title_fw700 title_fw700_fz20">Are you sure?</div>
+
+    <div class="modal__descr title title_fw400 title_fw400_fz16">You will lose your place in the queue</div>
+
+    <div class="modal__buttons">
+      <button
+        (click)="leaveQueueAndLogout(queueId)"
+        class="modal__buttons_leave button title title_fw500 title_fw500_fz16"
+      >
+        Leave
+      </button>
+      <button
+        (click)="cancel()"
+        class="modal__buttons_cancel button title title_fw500 title_fw500_fz16"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>

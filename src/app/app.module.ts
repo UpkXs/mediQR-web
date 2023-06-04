@@ -8,13 +8,15 @@ import {HttpClientModule} from "@angular/common/http";
 import { QueuePageComponent } from './queue-page/queue-page.component';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import {FormsModule} from "@angular/forms";
+import { OverlayComponent } from './overlay/overlay.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomePageComponent,
     QueuePageComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    OverlayComponent
   ],
   imports: [
     BrowserModule,
