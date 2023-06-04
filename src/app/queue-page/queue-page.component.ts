@@ -4,6 +4,7 @@ import {generateRandomNumber, generateRandomString} from "../../utils/GenerateRa
 import {Queue} from "../../model/Queue";
 import {QueuePageController} from "../../controllers/QueuePageController";
 import {SubSink} from "../../utils/SubSink";
+import {tap} from "rxjs";
 
 @Component({
   selector: 'mediQR-queue-page',
@@ -20,6 +21,8 @@ export class QueuePageComponent implements OnInit {
   isLeaved: boolean = false;
 
   queue: Queue;
+  queueCount: number;
+  queueCountWithoutMe: number;
 
   private readonly subs = new SubSink();
 
@@ -28,7 +31,7 @@ export class QueuePageComponent implements OnInit {
     private readonly queuePageController: QueuePageController,
   ) { }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.reason = params['reason'];
     });
@@ -38,10 +41,10 @@ export class QueuePageComponent implements OnInit {
     this.queueNumber = generateRandomNumber(3);
     this.queueCode = generateRandomNumber(6);
 
-    await this.addQueue();
+    this.addQueueAndLoadQueueCounts();
   }
 
-  addQueue() {
+  addQueueAndLoadQueueCounts() {
     this.subs.sink = this.queuePageController.addQueue({
       queueId: this.queueId,
       verificationCode: this.verificationCode,
@@ -49,12 +52,27 @@ export class QueuePageComponent implements OnInit {
       queueNumber: this.queueNumber,
       reason: this.reason,
       isLeaved: false,
-    }).subscribe();
+    }).subscribe(() => {
+      this.loadQueueCount();
+      this.loadQueueCountWithoutMe(this.queueId);
+    });
   }
 
+  loadQueueCount() {
+    this.subs.sink = this.queuePageController.loadQueueCount().pipe(
+      tap((count) => {
+        this.queueCount = count;
+        console.log("x49k8z0z :: this.queueCount : ", this.queueCount);
+      })
+    ).subscribe();
+  }
 
-  getPeopleCount(): number {
-    // todo aro get from server count of people in queue
-    return 1;
+  loadQueueCountWithoutMe(queueId: string) {
+    this.subs.sink = this.queuePageController.loadQueueCountWithoutMe(queueId).pipe(
+      tap((countWithoutMe) => {
+        this.queueCountWithoutMe = countWithoutMe;
+        console.log("25yeH9kM :: this.queueCountWithoutMe : ", this.queueCountWithoutMe);
+      })
+    ).subscribe();
   }
 }
