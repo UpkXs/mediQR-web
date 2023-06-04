@@ -1,11 +1,12 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {interval} from "rxjs";
 
 @Component({
   selector: 'mediQR-progress-bar',
   templateUrl: './progress-bar.component.html',
   styleUrls: ['./progress-bar.component.scss']
 })
-export class ProgressBarComponent implements OnInit{
+export class ProgressBarComponent {
   @Input() queueNumber: number;
   @Input() numberOfPeople: number;
 
@@ -14,7 +15,6 @@ export class ProgressBarComponent implements OnInit{
 
   progressValue = 0;
   progressEndValue = 0;
-  speed = 0;
   tempValue = 0;
   currentPercent = 0;
 
@@ -22,7 +22,6 @@ export class ProgressBarComponent implements OnInit{
     this.progressEndValue = this.getWaitingTime() * 60 * 1000; // in milliseconds
     this.progressValue = 0;
     this.tempValue = this.getWaitingTime() * 0.6;
-    this.speed = 100;
   }
 
   ngAfterViewInit() {
@@ -31,7 +30,9 @@ export class ProgressBarComponent implements OnInit{
 
     this.currentPercent = 0;
 
-    let progress = setInterval(() => {
+    const timer$ = interval(100);
+
+    const sub = timer$.subscribe((sec) => {
       this.progressValue = Number.parseFloat((this.progressValue + 0.1).toFixed(1));
 
       if ((this.progressValue / this.tempValue).toFixed(0) === (this.currentPercent + 1).toString()) {
@@ -46,10 +47,9 @@ export class ProgressBarComponent implements OnInit{
       }
 
       if (this.progressValue === this.progressEndValue / 1000) {
-        console.log('Cgg1ThdE :: this.progressValue === this.progressEndValue / 1000 : ', this.progressValue === this.progressEndValue / 1000)
-        clearInterval(progress)
+        sub.unsubscribe();
       }
-    }, this.speed)
+    });
   };
 
   getWaitingTime(): number {
