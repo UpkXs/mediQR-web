@@ -9,8 +9,6 @@ export class QueuePageController {
   }
 
   addQueue(queue: Queue): Observable<number> {
-    console.log("41d3lYBq :: QueuePageController : addQueue");
-    console.log("EhHD46V7 :: QueuePageController : queue : ", queue);
-    return this.http.post<number>('http://localhost:8080/addQueue', {queue}, {});
+    return this.http.post<number>('http://localhost:8080/addQueue/queue', queue);
   }
 }
