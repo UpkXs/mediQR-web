@@ -1,11 +1,52 @@
+@import "src/styles";
+
 .progress-wrapper {
   position: relative;
   width: 280px;
   height: 280px;
-  background-color: orange;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: $inactive-blue;
+  margin-top: 60px;
   border-radius: 50%;
-  display: grid;
-  place-items: center;
+
+  .progress-container {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+
+    .queue-number {
+      position: block;
+      margin: 65px auto 0 auto;
+      width: 172px;
+      color: $second-color;
+      text-align: center;
+    }
+
+    .number-of-people {
+      position: block;
+      margin: 22px auto 0 auto;
+      width: 220px;
+      color: $main-color;
+      text-align: center;
+    }
+
+    .waiting-time {
+      position: block;
+      margin: 22px auto 0 auto;
+      width: 140px;
+      color: $second-color;
+      text-align: center;
+    }
+  }
+}
+
+.progress-wrapper.center {
+  position: absolute;
+  margin-top: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .progress-wrapper::before {
@@ -13,13 +54,9 @@
   position: absolute;
   width: 84%;
   height: 84%;
-  background-color: #FFFFFF;
+  background-color: $white;
   border-radius: 50%;
-}
-
-.progress-container {
-  position: relative;
-  font-family: 'Inter', sans-serif;
-  font-size: 50px;
-  color: #231c3d;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }

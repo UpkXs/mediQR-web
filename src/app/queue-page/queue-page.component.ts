@@ -37,6 +37,6 @@ export class QueuePageComponent implements OnInit {
 
   getPeopleCount(): number {
     // todo aro get from server count of people in queue
-    return 3;
+    return 1;
   }
 }
