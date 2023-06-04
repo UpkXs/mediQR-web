@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {generateRandomNumber, generateRandomString} from "../../utils/GenerateRandomString";
 import {Queue} from "../../model/Queue";
+import {QueuePageController} from "../../controllers/QueuePageController";
+import {SubSink} from "../../utils/SubSink";
 
 @Component({
   selector: 'mediQR-queue-page',
@@ -19,11 +21,14 @@ export class QueuePageComponent implements OnInit {
 
   queue: Queue;
 
+  private readonly subs = new SubSink();
+
   constructor(
     private readonly route: ActivatedRoute,
+    private readonly queuePageController: QueuePageController,
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.reason = params['reason'];
     });
@@ -32,6 +37,19 @@ export class QueuePageComponent implements OnInit {
     this.verificationCode = generateRandomString(5);
     this.queueNumber = generateRandomNumber(3);
     this.queueCode = generateRandomNumber(6);
+
+    await this.addQueue();
+  }
+
+  addQueue() {
+    this.subs.sink = this.queuePageController.addQueue({
+      queueId: this.queueId,
+      verificationCode: this.verificationCode,
+      queueCode: this.queueCode,
+      queueNumber: this.queueNumber,
+      reason: this.reason,
+      isLeaved: false,
+    }).subscribe();
   }
 
 
