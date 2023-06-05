@@ -30,4 +30,8 @@ export class QueuePageService {
     ).subscribe();
   }
 
+  leaveQueueById(queueId: string) {
+    this.subs.sink = this.queuePageController.leaveQueueById(queueId).subscribe();
+  }
+
 }

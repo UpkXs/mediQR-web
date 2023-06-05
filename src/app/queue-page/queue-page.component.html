@@ -16,6 +16,7 @@
         *ngIf="queueNumber !== undefined &&
                queueCount !== undefined &&
                queueCountWithoutMe !== undefined"
+        [queueId]="queueId"
         [queueNumber]="queueNumber"
         [numberOfPeople]="queueCountWithoutMe"
         [isYourTurn]="isYourTurn"

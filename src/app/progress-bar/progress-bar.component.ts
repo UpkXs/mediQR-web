@@ -1,5 +1,6 @@
 import {Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {interval} from "rxjs";
+import {QueuePageService} from "../queue-page/queue-page.service";
 
 @Component({
   selector: 'mediQR-progress-bar',
@@ -7,6 +8,7 @@ import {interval} from "rxjs";
   styleUrls: ['./progress-bar.component.scss']
 })
 export class ProgressBarComponent {
+  @Input() queueId: string;
   @Input() queueNumber: number;
   @Input() numberOfPeople: number;
   @Input() isYourTurn: boolean;
@@ -19,6 +21,11 @@ export class ProgressBarComponent {
   currentPercent = 0;
   currentMinute: string;
   isQueueSoon: boolean = false;
+
+  constructor(
+    private readonly queuePageService: QueuePageService,
+  ) {
+  }
 
   ngOnInit(): void {
     this.progressEndValue = this.getWaitingTime() * 60 * 1000; // in milliseconds
@@ -35,7 +42,8 @@ export class ProgressBarComponent {
 
     const sub = timer$.subscribe((sec) => {
 
-      if (this.isYourTurn) { // todo aro OI3qM2NTxd add isLeaved true and orderIndex to Queue
+      if (this.isYourTurn) { // todo aro m15iWn2G orderIndex to Queue
+        this.queuePageService.leaveQueueById(this.queueId);
         progressBar.style.background = '#7EFFBA';
         progressBar.style.marginTop = '200px';
         sub.unsubscribe();
