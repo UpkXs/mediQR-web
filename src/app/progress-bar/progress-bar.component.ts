@@ -9,6 +9,7 @@ import {interval} from "rxjs";
 export class ProgressBarComponent {
   @Input() queueNumber: number;
   @Input() numberOfPeople: number;
+  @Input() isYourTurn: boolean;
 
   @ViewChild('progBar', {static: true}) progBar: ElementRef;
 
@@ -33,6 +34,13 @@ export class ProgressBarComponent {
     const timer$ = interval(100);
 
     const sub = timer$.subscribe((sec) => {
+
+      if (this.isYourTurn) { // todo aro OI3qM2NTxd add isLeaved true and orderIndex to Queue
+        progressBar.style.background = '#7EFFBA';
+        progressBar.style.marginTop = '200px';
+        sub.unsubscribe();
+      }
+
       this.currentMinute = ((this.progressEndValue - (sec * 100)) / 60).toFixed(0);
 
       if (this.currentMinute.length === 5) {

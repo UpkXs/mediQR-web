@@ -18,16 +18,21 @@
                queueCountWithoutMe !== undefined"
         [queueNumber]="queueNumber"
         [numberOfPeople]="queueCountWithoutMe"
+        [isYourTurn]="isYourTurn"
       >
       </mediQR-progress-bar>
 
 
-      <button class="notification-button button"
+      <button
+        *ngIf="!isYourTurn"
+        (click)="enableNotification()"
+        class="notification-button button"
       >
         Enable notification
       </button>
 
       <button
+        *ngIf="!isYourTurn"
         class="leave-button button"
         (click)="leaveQueueAndLogout()"
       >

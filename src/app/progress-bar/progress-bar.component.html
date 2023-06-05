@@ -13,22 +13,16 @@
         #{{queueNumber}}
       </span>
     </div>
+
     <div
-      *ngIf="!isQueueSoon"
+      *ngIf="!isQueueSoon && !isYourTurn"
       class="number-of-people title title_fw700 title_fw700_fz28"
     >
       in front of you {{numberOfPeople}} people
     </div>
 
     <div
-      *ngIf="isQueueSoon"
-      class="number-of-people title title_fw700 title_fw700_fz28"
-    >
-      in front of you no one
-    </div>
-
-    <div
-      *ngIf="!isQueueSoon"
+      *ngIf="!isQueueSoon  && !isYourTurn"
       class="waiting-time title title_fw400 title_fw400_fz16"
     >
       Left to wait
@@ -40,10 +34,31 @@
     </div>
 
     <div
-      *ngIf="isQueueSoon"
+      *ngIf="isQueueSoon  && !isYourTurn"
+      class="number-of-people title title_fw700 title_fw700_fz28"
+    >
+      in front of you no one
+    </div>
+
+    <div
+      *ngIf="isQueueSoon  && !isYourTurn"
       class="waiting-time title title_fw400 title_fw400_fz16"
     >
       You will be called soon
+    </div>
+
+    <div
+      *ngIf="isYourTurn"
+      class="number-of-people title title_fw700 title_fw700_fz28"
+    >
+      it's your turn now
+    </div>
+
+    <div
+      *ngIf="isYourTurn"
+      class="waiting-time title title_fw400 title_fw400_fz16"
+    >
+      You have been called!
     </div>
   </div>
 </div>
