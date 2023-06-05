@@ -1,0 +1,77 @@
+@import "src/styles";
+
+.location {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin-top: 18px;
+}
+
+.location__name {
+  padding: 3px 0 0 7px;
+  color: $second-color;
+}
+
+.content {
+  width: 280px;
+  display: block;
+  margin: 59px auto 0 auto;
+}
+
+.queue-text {
+  .last-descr {
+    text-align: center;
+    color: $second-color;
+  }
+
+  .last-number {
+    margin-top: 12px;
+    text-align: center;
+    color: $main-color;
+  }
+
+  .number-visitors {
+    margin-top: 12px;
+    text-align: center;
+    color: $second-color;
+  }
+}
+
+.call-buttons {
+  width: 280px;
+  text-align: center;
+  color: $white;
+  &__next {
+    margin-top: 24px;
+  }
+
+  &__number {
+    margin-top: 12px;
+  }
+
+  &__remove {
+    margin-top: 12px;
+  }
+}
+
+.call-buttons__next:disabled {
+  opacity: .6;
+}
+
+.call-buttons__number:disabled {
+  opacity: .6;
+}
+
+.call-buttons__remove:disabled {
+  opacity: .6;
+}
+
+.codes {
+  position: absolute;
+  color: $second-color;
+  left: 50%;
+  bottom: 18px;
+  transform: translate(-50%);
+  width: 250px;
+  text-align: center;
+}

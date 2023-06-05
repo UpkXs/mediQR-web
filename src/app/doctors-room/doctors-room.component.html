@@ -1,1 +1,70 @@
-<p>{{verificationCode}}</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="location">
+        <div class="location__icon">
+          <img src="assets/icons/location-icon.svg" alt="location-icon">
+        </div>
+
+        <div class="location__name title title_fw400 title_fw400_fz12"
+        >
+          Algamed in Almaty
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="queue-text">
+          <div class="last-descr title title_fw600 title_fw600_fz20"
+          >
+            Number of the last called visitor
+          </div>
+
+          <div class="last-number title title_fw700 title_fw700_fz98"
+          >
+            000
+          </div>
+
+          <div
+            class="number-visitors title title_fw400 title_fw400_fz16"
+            id="number-visitors"
+          >
+            <span class="title title_fw600 title_fw600_fz16"
+            >
+              <span id="number-visitors-id"
+              >
+                4
+              </span>
+              more person
+            </span>
+            in the queue
+          </div>
+        </div>
+
+        <button
+          class="call-buttons call-buttons__next button title title_fw500 title_fw500_fz16"
+        >
+          Call the next one
+        </button>
+
+        <button
+          class="call-buttons call-buttons__number button title title_fw500 title_fw500_fz16"
+        >
+          Call by number
+        </button>
+
+        <button
+          class="call-buttons call-buttons__remove button title title_fw500 title_fw500_fz16"
+        >
+          Remove visitors
+        </button>
+
+        <div
+          class="codes title title_fw400 title_fw400_fz12"
+        >
+          Verification code: {{verificationCode}}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
