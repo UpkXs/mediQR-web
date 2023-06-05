@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SubSink} from "../../utils/SubSink";
 import {WelcomePageController} from "../../controllers/WelcomePageController";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {tap} from "rxjs";
 
 @Component({
@@ -10,6 +10,8 @@ import {tap} from "rxjs";
   styleUrls: ['./welcome-page.component.scss']
 })
 export class WelcomePageComponent implements OnInit {
+
+  verificationCode: string;
 
   isOpenPopover: boolean = false;
   reasonDisplayValue: string = 'Choose';
@@ -21,10 +23,14 @@ export class WelcomePageComponent implements OnInit {
   constructor(
     private readonly welcomePageController: WelcomePageController,
     private readonly router: Router,
+    private readonly route: ActivatedRoute,
   ) {
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      this.verificationCode = params['verificationCode'];
+    });
     this.loadReasons();
   }
 
@@ -52,6 +58,6 @@ export class WelcomePageComponent implements OnInit {
   }
 
   navigateNextPage() {
-    this.router.navigate(['/queue-page', this.reasonDisplayValue]).then();
+    this.router.navigate(['/queue-page', this.verificationCode, this.reasonDisplayValue]).then();
   }
 }

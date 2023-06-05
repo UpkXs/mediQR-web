@@ -17,14 +17,14 @@ export class QueuePageService {
     private readonly queuePageController: QueuePageController,
   ) { }
 
-  leaveQueueAndLogout(queueId: string) {
+  leaveQueueAndLogout(queueId: string, verificationCode: string) {
     this.subs.sink = this.queuePageController.leaveQueueById(queueId).pipe(
       tap((deleted) => {
         this.deleted = !!deleted;
       }),
       tap(() => {
         if (this.deleted) {
-          this.router.navigate(['/welcome-page']).then();
+          this.router.navigate(['/welcome-page', verificationCode]).then();
         }
       })
     ).subscribe();

@@ -9,6 +9,7 @@ import { QueuePageComponent } from './queue-page/queue-page.component';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import {FormsModule} from "@angular/forms";
 import { OverlayComponent } from './overlay/overlay.component';
+import { DoctorsRoomComponent } from './doctors-room/doctors-room.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { OverlayComponent } from './overlay/overlay.component';
     WelcomePageComponent,
     QueuePageComponent,
     ProgressBarComponent,
-    OverlayComponent
+    OverlayComponent,
+    DoctorsRoomComponent
   ],
   imports: [
     BrowserModule,

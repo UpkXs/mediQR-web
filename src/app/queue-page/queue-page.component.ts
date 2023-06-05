@@ -36,11 +36,11 @@ export class QueuePageComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
+      this.verificationCode = params['verificationCode'];
       this.reason = params['reason'];
     });
 
     this.queueId = generateRandomString(10);
-    this.verificationCode = generateRandomString(5);
     this.queueNumber = generateRandomNumber(3);
     this.queueCode = generateRandomNumber(6);
 

@@ -9,6 +9,7 @@ import {QueuePageService} from "../queue-page/queue-page.service";
 export class OverlayComponent {
 
   @Input() queueId: string;
+  @Input() verificationCode: string;
   @Output() canceled = new EventEmitter<boolean>();
 
   deleted: boolean;
@@ -17,9 +18,9 @@ export class OverlayComponent {
     private readonly queuePageService: QueuePageService,
   ) { }
 
-  leaveQueueAndLogout(queueId: string) {
+  leaveQueueAndLogout(queueId: string, verificationCode: string) {
     this.deleted = true;
-    this.queuePageService.leaveQueueAndLogout(queueId);
+    this.queuePageService.leaveQueueAndLogout(queueId, verificationCode);
   }
 
   cancel() {
