@@ -17,6 +17,7 @@ export class ProgressBarComponent {
   tempValue = 0;
   currentPercent = 0;
   currentMinute: string;
+  isQueueSoon: boolean = false;
 
   ngOnInit(): void {
     this.progressEndValue = this.getWaitingTime() * 60 * 1000; // in milliseconds
@@ -54,7 +55,8 @@ export class ProgressBarComponent {
       }
 
       if (this.progressValue === this.progressEndValue / 1000) {
-        console.log("fX3lroOq :: this.progressValue === this.progressEndValue / 1000 : ", this.progressValue === this.progressEndValue / 1000);
+        this.isQueueSoon = true;
+        console.log("ve88IfBbh9 :: this.isQueueSoon : ", this.isQueueSoon);
         sub.unsubscribe();
       }
     });
