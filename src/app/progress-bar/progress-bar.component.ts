@@ -42,6 +42,11 @@ export class ProgressBarComponent {
 
     const sub = timer$.subscribe((sec) => {
 
+      if (this.numberOfPeople === 0) {
+        this.isQueueSoon = true;
+        progressBar.style.background = '#85D4FF';
+      }
+
       if (this.isYourTurn) { // todo aro m15iWn2G orderIndex to Queue
         this.queuePageService.leaveQueueById(this.queueId);
         progressBar.style.background = '#7EFFBA';
