@@ -28,13 +28,21 @@
             class="number-visitors title title_fw400 title_fw400_fz16"
             id="number-visitors"
           >
-            <span class="title title_fw600 title_fw600_fz16"
+            <span
+              *ngIf="isQueueEmpty"
+              class="title title_fw600 title_fw600_fz16"
             >
               <span id="number-visitors-id"
               >
-                4
+                {{queueCount}}
               </span>
               more person
+            </span>
+
+            <span
+              *ngIf="!isQueueEmpty"
+            >
+              No one
             </span>
             in the queue
           </div>
