@@ -50,18 +50,21 @@
 
         <button
           class="call-buttons call-buttons__next button title title_fw500 title_fw500_fz16"
+          [disabled]="!isQueueEmpty"
         >
           Call the next one
         </button>
 
         <button
           class="call-buttons call-buttons__number button title title_fw500 title_fw500_fz16"
+          [disabled]="!isQueueEmpty"
         >
           Call by number
         </button>
 
         <button
           class="call-buttons call-buttons__remove button title title_fw500 title_fw500_fz16"
+          [disabled]="!isQueueEmpty"
         >
           Remove visitors
         </button>
