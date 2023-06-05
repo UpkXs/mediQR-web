@@ -5,4 +5,5 @@ export interface Queue {
   queueNumber: number
   reason: string,
   isLeaved?: boolean,
+  orderIndex?: number,
 }
