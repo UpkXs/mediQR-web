@@ -1,53 +1,29 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {tap} from "rxjs";
-import {SubSink} from "../../utils/SubSink";
-import {QueuePageController} from "../../controllers/QueuePageController";
-import {Router} from "@angular/router";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {QueuePageService} from "../queue-page/queue-page.service";
 
 @Component({
   selector: 'mediQR-overlay',
   templateUrl: './overlay.component.html',
   styleUrls: ['./overlay.component.scss']
 })
-export class OverlayComponent implements OnInit {
+export class OverlayComponent {
 
   @Input() queueId: string;
-  @Input() reason: string;
-
-  @ViewChild('overlay', {static: true}) overlay: ElementRef;
+  @Output() canceled = new EventEmitter<boolean>();
 
   deleted: boolean;
 
-  private readonly subs = new SubSink();
-
   constructor(
-    private readonly router: Router,
-    private readonly queuePageController: QueuePageController,
+    private readonly queuePageService: QueuePageService,
   ) { }
 
-  ngOnInit(): void {
-  }
-
   leaveQueueAndLogout(queueId: string) {
-    this.subs.sink = this.queuePageController.leaveQueueById(queueId).pipe(
-      tap((deleted) => {
-        this.deleted = !!deleted;
-      }),
-      tap(() => {
-        if (this.deleted) {
-          this.router.navigate(['/welcome-page']).then();
-        }
-      })
-    ).subscribe();
+    this.deleted = true;
+    this.queuePageService.leaveQueueAndLogout(queueId);
   }
 
   cancel() {
-    console.log('baSUtbBO :: this.queueId : ', this.queueId);
-    console.log('baSUtbBO :: cancel()');
-    let progressBar = this.overlay.nativeElement;
-    progressBar.style.visibility = 'visible';
-    progressBar.style.opacity = 1;
-
-    this.router.navigate(['/queue-page', this.reason]).then();
+    this.deleted = false;
+    this.canceled.emit(true);
   }
 }

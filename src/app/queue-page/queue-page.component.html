@@ -45,5 +45,6 @@
 <mediQR-overlay
   *ngIf="delete"
   [queueId]="queueId"
+  (canceled)="cancel()"
 >
 </mediQR-overlay>

@@ -18,7 +18,6 @@ export class QueuePageComponent implements OnInit {
   queueId: string;
   queueCode: number;
   queueNumber: number;
-  isLeaved: boolean = false;
 
   queue: Queue;
   queueCount: number;
@@ -80,5 +79,9 @@ export class QueuePageComponent implements OnInit {
 
   leaveQueueAndLogout() {
     this.delete = true;
+  }
+
+  cancel() {
+    this.delete = false;
   }
 }
