@@ -29,7 +29,7 @@
             id="number-visitors"
           >
             <span
-              *ngIf="isQueueEmpty"
+              *ngIf="isQueueNotEmpty"
               class="title title_fw600 title_fw600_fz16"
             >
               <span id="number-visitors-id"
@@ -40,7 +40,7 @@
             </span>
 
             <span
-              *ngIf="!isQueueEmpty"
+              *ngIf="!isQueueNotEmpty"
             >
               No one
             </span>
@@ -50,21 +50,21 @@
 
         <button
           class="call-buttons call-buttons__next button title title_fw500 title_fw500_fz16"
-          [disabled]="!isQueueEmpty"
+          [disabled]="!isQueueNotEmpty"
         >
           Call the next one
         </button>
 
         <button
           class="call-buttons call-buttons__number button title title_fw500 title_fw500_fz16"
-          [disabled]="!isQueueEmpty"
+          [disabled]="!isQueueNotEmpty"
         >
           Call by number
         </button>
 
         <button
           class="call-buttons call-buttons__remove button title title_fw500 title_fw500_fz16"
-          [disabled]="!isQueueEmpty"
+          [disabled]="!isQueueNotEmpty"
         >
           Remove visitors
         </button>

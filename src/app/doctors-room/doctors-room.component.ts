@@ -12,7 +12,7 @@ import {tap} from "rxjs";
 export class DoctorsRoomComponent implements OnInit { //todo aro x8qCepZF save prev queueId
   verificationCode: string;
   queueCount: number;
-  isQueueEmpty: boolean;
+  isQueueNotEmpty: boolean;
 
   private readonly subs = new SubSink();
 
@@ -33,7 +33,7 @@ export class DoctorsRoomComponent implements OnInit { //todo aro x8qCepZF save p
     this.subs.sink = this.queuePageController.loadQueueCount().pipe(
       tap((count) => {
         this.queueCount = count;
-        this.isQueueEmpty = !!count;
+        this.isQueueNotEmpty = !!count;
       })
     ).subscribe()
   }
