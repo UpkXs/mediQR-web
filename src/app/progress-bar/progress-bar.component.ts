@@ -47,7 +47,7 @@ export class ProgressBarComponent {
         progressBar.style.background = '#85D4FF';
       }
 
-      if (this.isYourTurn) { // todo aro m15iWn2G orderIndex to Queue
+      if (this.isYourTurn) {
         this.queuePageService.leaveQueueById(this.queueId);
         progressBar.style.background = '#7EFFBA';
         progressBar.style.marginTop = '200px';
