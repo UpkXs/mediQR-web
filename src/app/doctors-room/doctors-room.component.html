@@ -65,6 +65,7 @@
         </button>
 
         <button
+          (click)="removeVisitors()"
           class="call-buttons call-buttons__remove button title title_fw500 title_fw500_fz16"
           [disabled]="!isQueueNotEmpty"
         >
@@ -96,3 +97,10 @@
   (calledByNumber)="callByNumberAndCloseDialog($event)"
 >
 </mediQR-call-by-number>
+
+<mediQR-remove-visitors
+  *ngIf="isRemoveVisitors"
+  [queueNumbers]="queueNumberWithOrderIndexMap"
+  (calledByNumbers)="removeVisitorsAndCloseDialog($event)"
+>
+</mediQR-remove-visitors>

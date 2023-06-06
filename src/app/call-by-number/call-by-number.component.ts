@@ -16,7 +16,6 @@ export class CallByNumberComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('eZmHVrFPa7 :: ', this.queueNumbers);
   }
 
   handleButtonClick(buttonValue: number) {
@@ -24,12 +23,10 @@ export class CallByNumberComponent implements OnInit {
   }
 
   isButtonSelected(buttonValue: number): boolean {
-    console.log('09swx2k2xH :: this.selectedButton : ', this.selectedButton)
     return this.selectedButton === buttonValue;
   }
 
   callByNumber() {
-    console.log('thZ7539zYn :: callByNumber() : ', this.selectedButton)
     this.calledByNumber.emit(this.selectedButton);
   }
 

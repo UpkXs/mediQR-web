@@ -13,6 +13,7 @@ import { DoctorsRoomComponent } from './doctors-room/doctors-room.component';
 import { CallNextOverlayComponent } from './call-next-overlay/call-next-overlay.component';
 import { YourTurnOverlayComponent } from './your-turn-overlay/your-turn-overlay.component';
 import { CallByNumberComponent } from './call-by-number/call-by-number.component';
+import { RemoveVisitorsComponent } from './remove-visitors/remove-visitors.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CallByNumberComponent } from './call-by-number/call-by-number.component
     DoctorsRoomComponent,
     CallNextOverlayComponent,
     YourTurnOverlayComponent,
-    CallByNumberComponent
+    CallByNumberComponent,
+    RemoveVisitorsComponent
   ],
   imports: [
     BrowserModule,

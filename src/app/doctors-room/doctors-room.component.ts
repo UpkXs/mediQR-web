@@ -21,6 +21,7 @@ export class DoctorsRoomComponent implements OnInit {
 
   isCallNext: boolean = false;
   isCallByNumber: boolean = false;
+  isRemoveVisitors: boolean = false;
 
   private readonly subs = new SubSink();
 
@@ -144,5 +145,24 @@ export class DoctorsRoomComponent implements OnInit {
     this.isCallByNumber = true;
 
     await this.loadNextQueueNumber();
+  }
+
+  async removeVisitors() {
+    this.isRemoveVisitors = true;
+
+    await this.loadNextQueueNumber();
+  }
+
+  async removeVisitorsAndCloseDialog(selectedButtons: number[]) {
+    this.isRemoveVisitors = false;
+
+    this.subs.sink = await this.queuePageController.removeQueuesByNumber(selectedButtons).pipe(
+      tap(() => {
+        this.loadQueueCount();
+      }),
+      tap(() => {
+        this.loadNextQueueNumber();
+      })
+    ).subscribe();
   }
 }

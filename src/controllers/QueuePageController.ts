@@ -38,4 +38,8 @@ export class QueuePageController {
   setIsYourTurn(queueNumber: number): Observable<number> {
     return this.http.post<number>(this.api + '/set-is-your-turn/queueNumber', queueNumber);
   }
+
+  removeQueuesByNumber(queueNumbers: number[]): Observable<number> {
+    return this.http.post<number>(this.api + '/remove-queues-by-number/queueNumbers', queueNumbers);
+  }
 }

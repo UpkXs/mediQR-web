@@ -1,0 +1,44 @@
+<div class="overlay">
+  <div class="modal">
+    <div
+      class="modal__subtitle modal__subtitle_remove title title_fw700 title_fw700_fz20"
+    >
+      Select a visitors by number
+    </div>
+
+    <div
+      class="modal__selection-area modal__selection-area_remove"
+    >
+      <div
+        class="modal__selection-container modal__selection-container_remove"
+      >
+        <div
+          class="scroll-x"
+          *ngFor="let map of queueNumbers | keyvalue"
+        >
+          <button
+            class="modal__selection-item modal__selection-item_remove button title title_fw700 title_fw700_fz42"
+            (click)="handleButtonClick(map.key)"
+            [class.selected]="isSelectedButton(map.key)"
+          >
+            {{map.key}}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal__buttons modal__buttons_mt14"
+    >
+      <button
+        class="modal__buttons_remove button title title_fw500 title_fw500_fz16"
+        id="modal__buttons_remove_id"
+        (click)="removeByQueueNumbers()"
+        [class.active]="selectedButtons.length !== 0"
+        [disabled]="selectedButtons.length === 0"
+      >
+        Remove
+      </button>
+    </div>
+  </div>
+</div>

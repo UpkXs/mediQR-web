@@ -21,7 +21,7 @@ export class AppComponent implements OnInit{
     this.verificationCode = generateRandomString(5);
     console.log('s21ggvME :: this.verificationCode : ', this.verificationCode);
 
-    if (this.role === 'patient') {
+    if (this.role === 'admin') {
       this.router.navigate(['/welcome-page', this.verificationCode]).then();
     } else if (this.role === 'admin') {
       this.router.navigate(['/doctors-room', this.verificationCode]).then();
