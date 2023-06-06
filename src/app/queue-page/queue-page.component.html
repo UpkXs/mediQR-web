@@ -58,6 +58,18 @@
 
 <mediQR-your-turn-overlay
   *ngIf="isYourTurnDialogOpen"
+  [subTitle]="'It\'s your turn!'"
+  [description]="'No more people waiting in front of you'"
+  [buttonText]="'Clear'"
   (cleared)="clear()"
+>
+</mediQR-your-turn-overlay>
+
+<mediQR-your-turn-overlay
+  *ngIf="isEnableNotificationDialogOpen"
+  [subTitle]="'Notification enabled!'"
+  [description]="'Now all activities will be displayed through the notification'"
+  [buttonText]="'Got it!'"
+  (cleared)="gotIt()"
 >
 </mediQR-your-turn-overlay>

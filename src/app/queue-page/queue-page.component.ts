@@ -26,6 +26,7 @@ export class QueuePageComponent implements OnInit {
   delete: boolean = false;
   isYourTurn: boolean = false;
   isYourTurnDialogOpen: boolean;
+  isEnableNotificationDialogOpen: boolean;
 
   private readonly subs = new SubSink();
 
@@ -89,12 +90,20 @@ export class QueuePageComponent implements OnInit {
     this.delete = false;
   }
 
-  enableNotification() {
+  isYourTurnNow() {
     this.isYourTurn = true;
     this.isYourTurnDialogOpen = true;
   }
 
   clear() {
     this.isYourTurnDialogOpen = false;
+  }
+
+  enableNotification() {
+    this.isEnableNotificationDialogOpen = true;
+  }
+
+  gotIt() {
+    this.isEnableNotificationDialogOpen = false;
   }
 }

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'mediQR-your-turn-overlay',
@@ -7,6 +7,9 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 })
 export class YourTurnOverlayComponent implements OnInit {
 
+  @Input() subTitle: string;
+  @Input() description: string;
+  @Input() buttonText: string;
   @Output() cleared = new EventEmitter<boolean>;
 
   constructor() { }
