@@ -57,6 +57,7 @@
         </button>
 
         <button
+          (click)="callByQueueNumber()"
           class="call-buttons call-buttons__number button title title_fw500 title_fw500_fz16"
           [disabled]="!isQueueNotEmpty"
         >
@@ -88,3 +89,10 @@
   (canceled)="cancel()"
 >
 </mediQR-call-next-overlay>
+
+<mediQR-call-by-number
+  *ngIf="isCallByNumber"
+  [queueNumbers]="queueNumberWithOrderIndexMap"
+  (calledByNumber)="callByNumberAndCloseDialog($event)"
+>
+</mediQR-call-by-number>

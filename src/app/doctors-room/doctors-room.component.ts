@@ -20,6 +20,7 @@ export class DoctorsRoomComponent implements OnInit {
   queueNumberWithOrderIndexMap: Map<number, number> = new Map<number, number>();
 
   isCallNext: boolean = false;
+  isCallByNumber: boolean = false;
 
   private readonly subs = new SubSink();
 
@@ -34,6 +35,7 @@ export class DoctorsRoomComponent implements OnInit {
     });
 
     await this.loadQueueCount();
+    await this.loadQueueNumberAndOrderIndex();
   }
 
   async loadQueueCount() {
@@ -93,6 +95,18 @@ export class DoctorsRoomComponent implements OnInit {
   async approveAndCloseDialog() {
     this.isCallNext = false;
 
+    await this.changePrevQueueAndCallNextOne();
+  }
+
+  async callByNumberAndCloseDialog(selectedButton: number) {
+    this.isCallByNumber = false;
+
+    this.currentCalledQueueNumber = selectedButton;
+
+    await this.changePrevQueueAndCallNextOne();
+  }
+
+  async changePrevQueueAndCallNextOne() {
     this.previousCalledQueueNumber = this.currentCalledQueueNumber.toString();
 
     this.subs.sink = await this.queuePageController.setIsYourTurn(this.currentCalledQueueNumber).pipe(
@@ -105,22 +119,30 @@ export class DoctorsRoomComponent implements OnInit {
     ).subscribe();
   }
 
-  async loadNextQueueNumber() {
-    await this.loadQueueNumberAndOrderIndex();
-
-    let nextQueue = await this.getQueueNumberWithLowestOrderIndex();
-    if (nextQueue) {
-      this.currentCalledQueueNumber = nextQueue.queueNumber;
-    }
-  }
-
   async callNextQueue() {
     this.isCallNext = true;
 
     await this.loadNextQueueNumber();
   }
 
+  async loadNextQueueNumber() {
+    await this.loadQueueNumberAndOrderIndex();
+
+    if (this.isCallNext && !this.isCallByNumber) {
+      let nextQueue = await this.getQueueNumberWithLowestOrderIndex();
+      if (nextQueue) {
+        this.currentCalledQueueNumber = nextQueue.queueNumber;
+      }
+    }
+  }
+
   cancel() {
     this.isCallNext = false;
+  }
+
+  async callByQueueNumber() {
+    this.isCallByNumber = true;
+
+    await this.loadNextQueueNumber();
   }
 }
