@@ -55,3 +55,9 @@
   (canceled)="cancel()"
 >
 </mediQR-overlay>
+
+<mediQR-your-turn-overlay
+  *ngIf="isYourTurnDialogOpen"
+  (cleared)="clear()"
+>
+</mediQR-your-turn-overlay>

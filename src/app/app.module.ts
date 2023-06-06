@@ -11,6 +11,7 @@ import {FormsModule} from "@angular/forms";
 import { OverlayComponent } from './overlay/overlay.component';
 import { DoctorsRoomComponent } from './doctors-room/doctors-room.component';
 import { CallNextOverlayComponent } from './call-next-overlay/call-next-overlay.component';
+import { YourTurnOverlayComponent } from './your-turn-overlay/your-turn-overlay.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CallNextOverlayComponent } from './call-next-overlay/call-next-overlay.
     ProgressBarComponent,
     OverlayComponent,
     DoctorsRoomComponent,
-    CallNextOverlayComponent
+    CallNextOverlayComponent,
+    YourTurnOverlayComponent
   ],
   imports: [
     BrowserModule,
