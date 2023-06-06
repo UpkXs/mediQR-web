@@ -6,4 +6,5 @@ export interface Queue {
   reason: string,
   isLeaved?: boolean,
   orderIndex?: number,
+  isYourTurn?: boolean,
 }

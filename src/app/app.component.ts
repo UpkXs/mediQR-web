@@ -9,7 +9,7 @@ import {generateRandomString} from "../utils/GenerateRandomString";
 })
 export class AppComponent implements OnInit{
   title = 'mediQR-web';
-  role: string = 'admin' //todo aro 81KKrWiK when QR
+  role: string = 'patient' //todo aro 81KKrWiK when QR
   verificationCode: string //todo aro Np7q0Gqe when QR
 
   constructor(

@@ -26,4 +26,16 @@ export class QueuePageController {
   leaveQueueById(queueId: string): Observable<number> {
     return this.http.post<number>(this.api + '/leave-queue-by-id/queueId', queueId);
   }
+
+  leaveQueueByNumber(queueNumber: number): Observable<number> {
+    return this.http.post<number>(this.api + '/leave-queue-by-number/queueNumber', queueNumber);
+  }
+
+  loadAllQueue(): Observable<Queue[]> {
+    return this.http.post<Queue[]>(this.api + '/load-all-queue', {}, {});
+  }
+
+  setIsYourTurn(queueNumber: number): Observable<number> {
+    return this.http.post<number>(this.api + '/set-is-your-turn/queueNumber', queueNumber);
+  }
 }

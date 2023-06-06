@@ -21,7 +21,7 @@
 
           <div class="last-number title title_fw700 title_fw700_fz98"
           >
-            000
+            {{previousCalledQueueNumber}}
           </div>
 
           <div
@@ -49,6 +49,7 @@
         </div>
 
         <button
+          (click)="callNextQueue()"
           class="call-buttons call-buttons__next button title title_fw500 title_fw500_fz16"
           [disabled]="!isQueueNotEmpty"
         >

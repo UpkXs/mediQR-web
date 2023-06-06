@@ -4,7 +4,7 @@ import {generateRandomNumber, generateRandomString} from "../../utils/GenerateRa
 import {Queue} from "../../model/Queue";
 import {QueuePageController} from "../../controllers/QueuePageController";
 import {SubSink} from "../../utils/SubSink";
-import {count, tap} from "rxjs";
+import {tap} from "rxjs";
 
 @Component({
   selector: 'mediQR-queue-page',
@@ -55,6 +55,7 @@ export class QueuePageComponent implements OnInit {
       queueNumber: this.queueNumber,
       reason: this.reason,
       isLeaved: false,
+      isYourTurn: false,
     }).subscribe(() => {
       this.loadQueueCount();
       this.loadQueueCountWithoutMe(this.queueId);
