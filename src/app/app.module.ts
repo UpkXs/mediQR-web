@@ -10,6 +10,7 @@ import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import {FormsModule} from "@angular/forms";
 import { OverlayComponent } from './overlay/overlay.component';
 import { DoctorsRoomComponent } from './doctors-room/doctors-room.component';
+import { CallNextOverlayComponent } from './call-next-overlay/call-next-overlay.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { DoctorsRoomComponent } from './doctors-room/doctors-room.component';
     QueuePageComponent,
     ProgressBarComponent,
     OverlayComponent,
-    DoctorsRoomComponent
+    DoctorsRoomComponent,
+    CallNextOverlayComponent
   ],
   imports: [
     BrowserModule,

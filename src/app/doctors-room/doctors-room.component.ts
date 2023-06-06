@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {QueuePageController} from "../../controllers/QueuePageController";
 import {SubSink} from "../../utils/SubSink";
@@ -18,6 +18,8 @@ export class DoctorsRoomComponent implements OnInit {
   currentCalledQueueNumber: number;
 
   queueNumberWithOrderIndexMap: Map<number, number> = new Map<number, number>();
+
+  isCallNext: boolean = false;
 
   private readonly subs = new SubSink();
 
@@ -67,25 +69,6 @@ export class DoctorsRoomComponent implements OnInit {
     });
   }
 
-  async callNextQueue() {
-    await this.loadQueueNumberAndOrderIndex();
-
-    let nextQueue = await this.getQueueNumberWithLowestOrderIndex();
-    if (nextQueue) {
-      this.currentCalledQueueNumber = nextQueue.queueNumber;
-      this.previousCalledQueueNumber = this.currentCalledQueueNumber.toString();
-    }
-
-    this.subs.sink = await this.queuePageController.setIsYourTurn(this.currentCalledQueueNumber).pipe(
-      tap(() => {
-        this.subs.sink = this.queuePageController.leaveQueueByNumber(this.currentCalledQueueNumber).subscribe();
-      }),
-      tap(() => {
-        this.loadQueueCount();
-      })
-    ).subscribe();
-  }
-
   getQueueNumberWithLowestOrderIndex() {
     const queueArray = Array.from(this.queueNumberWithOrderIndexMap.entries());
 
@@ -107,4 +90,37 @@ export class DoctorsRoomComponent implements OnInit {
     return nextQueue;
   }
 
+  async approveAndCloseDialog() {
+    this.isCallNext = false;
+
+    this.previousCalledQueueNumber = this.currentCalledQueueNumber.toString();
+
+    this.subs.sink = await this.queuePageController.setIsYourTurn(this.currentCalledQueueNumber).pipe(
+      tap(() => {
+        this.subs.sink = this.queuePageController.leaveQueueByNumber(this.currentCalledQueueNumber).subscribe();
+      }),
+      tap(() => {
+        this.loadQueueCount();
+      })
+    ).subscribe();
+  }
+
+  async loadNextQueueNumber() {
+    await this.loadQueueNumberAndOrderIndex();
+
+    let nextQueue = await this.getQueueNumberWithLowestOrderIndex();
+    if (nextQueue) {
+      this.currentCalledQueueNumber = nextQueue.queueNumber;
+    }
+  }
+
+  async callNextQueue() {
+    this.isCallNext = true;
+
+    await this.loadNextQueueNumber();
+  }
+
+  cancel() {
+    this.isCallNext = false;
+  }
 }

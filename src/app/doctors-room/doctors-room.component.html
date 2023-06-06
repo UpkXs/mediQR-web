@@ -80,3 +80,11 @@
     </div>
   </div>
 </div>
+
+<mediQR-call-next-overlay
+  *ngIf="isCallNext"
+  [currentCalledQueueNumber]="currentCalledQueueNumber"
+  (approved)="approveAndCloseDialog()"
+  (canceled)="cancel()"
+>
+</mediQR-call-next-overlay>
