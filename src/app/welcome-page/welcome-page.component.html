@@ -26,7 +26,7 @@
       type="text"
       class="textBox title_fw400 title_fw400_fz16"
       readonly
-      [placeholder]="reasonDisplayValue"
+      [placeholder]="reason"
     >
 
     <div
@@ -48,7 +48,7 @@
   <button
     class="next-button button title title_fw500 title_fw500_fz16"
     [class.active]="isReasonSelected() && !isOpenPopover"
-    (click)="navigateNextPage()"
+    (click)="nextBtnClicked()"
   >
     Next
   </button>

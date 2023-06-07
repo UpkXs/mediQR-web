@@ -5,8 +5,8 @@ import {QueuePageComponent} from "./queue-page/queue-page.component";
 import {DoctorsRoomComponent} from "./doctors-room/doctors-room.component";
 
 const routes: Routes = [
-  { path: 'welcome-page/:verificationCode', component: WelcomePageComponent},
-  { path: 'queue-page/:verificationCode/:reason', component: QueuePageComponent},
+  { path: 'welcome-page', component: WelcomePageComponent},
+  { path: 'queue-page', component: QueuePageComponent},
   { path: 'doctors-room/:verificationCode', component: DoctorsRoomComponent},
 ];
 

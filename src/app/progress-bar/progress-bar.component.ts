@@ -66,6 +66,13 @@ export class ProgressBarComponent {
 
       this.progressValue = Number.parseFloat((this.progressValue + 0.1).toFixed(1));
 
+      // localStorage.setItem('progressValue', this.progressValue.toString());
+      // localStorage.setItem('currentPercent', this.currentPercent.toString());
+      // const progressValueS = localStorage.getItem('progressValue');
+      // const currentPercentS = localStorage.getItem('currentPercent');
+      // console.log('n0AM1wk1 :: progressValueS : ', progressValueS)
+      // console.log('e2efC3Jr :: currentPercentS : ', currentPercentS)
+
       if ((this.progressValue / this.tempValue).toFixed(0) === (this.currentPercent + 1).toString()) {
         this.currentPercent += 1;
 

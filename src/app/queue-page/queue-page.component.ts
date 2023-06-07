@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Params, Router} from "@angular/router";
-import {generateQueueNumber, generateRandomNumber, generateRandomString} from "../../utils/GenerateRandomString";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Queue} from "../../model/Queue";
 import {QueuePageController} from "../../controllers/QueuePageController";
 import {SubSink} from "../../utils/SubSink";
-import {take, tap} from "rxjs";
 import {QueuePageService} from "./queue-page.service";
 
 @Component({
@@ -41,58 +39,13 @@ export class QueuePageComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.route.params.subscribe((params: Params) => {
-      this.verificationCode = params['verificationCode'];
-      this.reason = params['reason'];
-    });
-
-    this.queueId = generateRandomString(10);
-
-    await this.queuePageController.loadAllQueueCount().pipe(
-      tap((count) => {
-        this.queueNumber = count;
-      }),
-      take(1) // Take only the first emitted value
-    ).toPromise(); // Convert the observable to a promise and await it
-
-    this.queueNumber = generateQueueNumber(this.queueNumber);
-
-    this.queueCode = generateRandomNumber(6);
-
-    this.addQueueAndLoadQueueCounts();
-  }
-
-  addQueueAndLoadQueueCounts() {
-    this.subs.sink = this.queuePageController.addQueue({
-      queueId: this.queueId,
-      verificationCode: this.verificationCode,
-      queueCode: this.queueCode,
-      queueNumber: this.queueNumber,
-      reason: this.reason,
-      isLeaved: false,
-      isYourTurn: false,
-    }).subscribe(() => {
-      this.loadQueueCount();
-      this.loadQueueCountWithoutMe(this.queueId);
-    });
-  }
-
-  loadQueueCount() {
-    this.subs.sink = this.queuePageController.loadQueueCount().pipe(
-      tap((count) => {
-        this.queueCount = count;
-        console.log("x49k8z0z :: this.queueCount : ", this.queueCount);
-      })
-    ).subscribe();
-  }
-
-  loadQueueCountWithoutMe(queueId: string) {
-    this.subs.sink = this.queuePageController.loadQueueCountWithoutMe(queueId).pipe(
-      tap((countWithoutMe) => {
-        this.queueCountWithoutMe = countWithoutMe;
-        console.log("25yeH9kM :: this.queueCountWithoutMe : ", this.queueCountWithoutMe);
-      })
-    ).subscribe();
+    this.queueId = this.queuePageService.queueId;
+    this.queueCode = this.queuePageService.queueCode;
+    this.queueNumber = this.queuePageService.queueNumber;
+    this.verificationCode = this.queuePageService.verificationCode;
+    this.reason = this.queuePageService.reason;
+    this.queueCount = this.queuePageService.queueCount;
+    this.queueCountWithoutMe = this.queuePageService.queueCountWithoutMe;
   }
 
   leaveQueueAndLogout() {
@@ -106,7 +59,7 @@ export class QueuePageComponent implements OnInit {
   approve(queueId: string) {
     this.delete = false;
 
-    this.queuePageService.leaveQueueAndLogout(queueId, this.verificationCode);
+    this.queuePageService.leaveQueueAndLogout(queueId);
   }
 
   isYourTurnNow() {

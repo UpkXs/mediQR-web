@@ -9,6 +9,14 @@ import {Router} from "@angular/router";
 })
 export class QueuePageService {
 
+  queueId: string;
+  verificationCode: string;
+  queueCode: number;
+  queueNumber: number;
+  reason: string;
+  queueCount: number;
+  queueCountWithoutMe: number;
+
   deleted: boolean = false;
   private readonly subs = new SubSink();
 
@@ -17,14 +25,14 @@ export class QueuePageService {
     private readonly queuePageController: QueuePageController,
   ) { }
 
-  leaveQueueAndLogout(queueId: string, verificationCode: string) {
+  leaveQueueAndLogout(queueId: string) {
     this.subs.sink = this.queuePageController.leaveQueueById(queueId).pipe(
       tap((deleted) => {
         this.deleted = !!deleted;
       }),
       tap(() => {
         if (this.deleted) {
-          this.router.navigate(['/welcome-page', verificationCode]).then();
+          this.router.navigate(['/welcome-page']).then();
         }
       })
     ).subscribe();
