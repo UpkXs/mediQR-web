@@ -50,4 +50,12 @@ export class QueuePageController {
   loadAllQueueCount(): Observable<number> {
     return this.http.post<number>(this.api + '/load-all-queue-count', {}, {});
   }
+
+  getItsYourTurn(queueId: string): Observable<boolean> {
+    return this.http.post<boolean>(this.api + '/get-is-your-turn/queueId', queueId);
+  }
+
+  getIsLeaved(queueId: string): Observable<boolean> {
+    return this.http.post<boolean>(this.api + '/get-is-leaved/queueId', queueId);
+  }
 }

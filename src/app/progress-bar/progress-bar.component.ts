@@ -1,8 +1,9 @@
-import {Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {interval, tap} from "rxjs";
 import {QueuePageService} from "../queue-page/queue-page.service";
 import {QueuePageController} from "../../controllers/QueuePageController";
 import {SubSink} from "../../utils/SubSink";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'mediQR-progress-bar',
@@ -14,8 +15,11 @@ export class ProgressBarComponent {
   @Input() queueNumber: number;
   @Input() numberOfPeople: number;
   @Input() isYourTurn: boolean;
+  @Output() isYourTurnFromServer = new EventEmitter<boolean>;
 
   @ViewChild('progBar', {static: true}) progBar: ElementRef;
+
+  isLeaved: boolean;
 
   progressValue = 0;
   progressEndValue = 0;
@@ -33,6 +37,7 @@ export class ProgressBarComponent {
   constructor(
     private readonly queuePageService: QueuePageService,
     private readonly queuePageController: QueuePageController,
+    private readonly router: Router,
   ) {
   }
 
@@ -53,6 +58,28 @@ export class ProgressBarComponent {
           if (this.numberOfPeople !== this.prevPeopleNumber) {
             this.temp = this.prevPeopleNumber - this.numberOfPeople;
           }
+        })
+      ).toPromise();
+  }
+
+  async getItsYourTurn(queueId: string) {
+    await this.queuePageController.getItsYourTurn(queueId)
+      .pipe(
+        tap((isYourTurnFromServer) => {
+          console.log('r6qc0717 :: isYourTurnFromServer : ', isYourTurnFromServer);
+          this.isYourTurn = isYourTurnFromServer;
+          console.log('bSM1eKf2 :: this.isYourTurn : ', this.isYourTurn);
+        })
+      ).toPromise();
+  }
+
+  async getIsLeaved(queueId: string) {
+    await this.queuePageController.getIsLeaved(queueId)
+      .pipe(
+        tap((isLeavedFromServer) => {
+          console.log('I3ZUDJ5A :: isLeavedFromServer : ', isLeavedFromServer);
+          this.isLeaved = isLeavedFromServer;
+          console.log('TbNM45oS :: this.isLeaved : ', this.isLeaved);
         })
       ).toPromise();
   }
@@ -83,6 +110,16 @@ export class ProgressBarComponent {
         this.loadQueueCountWithoutMe(this.queueId).then();
       }
 
+      if (sec % 5 === 0) {
+        this.getItsYourTurn(this.queueId).then();
+        console.log('iC851aqr :: this.isYourTurn : ', this.isYourTurn);
+      }
+
+      if (sec % 10 === 0) {
+        this.getIsLeaved(this.queueId).then();
+        console.log('ZsRj411S :: this.isLeaved : ', this.isLeaved);
+      }
+
       if (this.temp !== 0) {
         this.progressValue = this.progressValue + (this.temp * 1 * 60); // for each person gives 1 minutes
 
@@ -90,18 +127,6 @@ export class ProgressBarComponent {
 
         this.currentPercent = this.currentPercent + (100 / this.progressEndValue) * (this.temp * 1 * 60 * 1000); // for each person gives 1 minutes
         this.currentPercent = Number(this.currentPercent.toFixed(0));
-
-        if (Number(this.currentMinute) < 0) {
-          this.currentMinuteToShow = '1';
-        } else {
-          if (this.currentMinute.length === 5) {
-            this.currentMinuteToShow = this.currentMinute.charAt(0) + this.currentMinute.charAt(1);
-          } else if (this.currentMinute.length === 4) {
-            this.currentMinuteToShow = this.currentMinute.charAt(0);
-          } else {
-            this.currentMinuteToShow = '1';
-          }
-        }
 
         this.temp = 0;
 
@@ -121,10 +146,16 @@ export class ProgressBarComponent {
       }
 
       if (this.isYourTurn) {
+        this.isYourTurnFromServer.emit(true);
         this.queuePageService.leaveQueueById(this.queueId);
         progressBar.style.background = '#7EFFBA';
         progressBar.style.marginTop = '200px';
         sub.unsubscribe();
+      }
+
+      if (this.isLeaved && !this.isYourTurn) {
+        sub.unsubscribe();
+        this.router.navigate(['/logout-page']).then();
       }
 
       this.currentMinute = ((this.progressEndValue - (sec * 100)) / 60).toFixed(0);

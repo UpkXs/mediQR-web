@@ -20,6 +20,7 @@
         [queueNumber]="queueNumber"
         [numberOfPeople]="queueCountWithoutMe"
         [isYourTurn]="isYourTurn"
+        (isYourTurnFromServer)="isYourTurnNow()"
       >
       </mediQR-progress-bar>
 

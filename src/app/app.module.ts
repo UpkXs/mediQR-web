@@ -14,6 +14,7 @@ import { CallNextOverlayComponent } from './call-next-overlay/call-next-overlay.
 import { YourTurnOverlayComponent } from './your-turn-overlay/your-turn-overlay.component';
 import { CallByNumberComponent } from './call-by-number/call-by-number.component';
 import { RemoveVisitorsComponent } from './remove-visitors/remove-visitors.component';
+import { LogoutPageComponent } from './logout-page/logout-page.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { RemoveVisitorsComponent } from './remove-visitors/remove-visitors.compo
     CallNextOverlayComponent,
     YourTurnOverlayComponent,
     CallByNumberComponent,
-    RemoveVisitorsComponent
+    RemoveVisitorsComponent,
+    LogoutPageComponent
   ],
   imports: [
     BrowserModule,

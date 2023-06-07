@@ -96,7 +96,7 @@ export class QueuePageComponent implements OnInit {
     this.queuePageService.leaveQueueAndLogout(queueId);
   }
 
-  isYourTurnNow() { //todo aro oPXR2h57 load from server
+  isYourTurnNow() {
     this.isYourTurn = true;
     this.isYourTurnDialogOpen = true;
   }
