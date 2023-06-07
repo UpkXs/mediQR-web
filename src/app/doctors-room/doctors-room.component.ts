@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {QueuePageController} from "../../controllers/QueuePageController";
 import {SubSink} from "../../utils/SubSink";
 import {finalize, tap} from "rxjs";
+import {generateRandomString} from "../../utils/GenerateRandomString";
 
 @Component({
   selector: 'mediQR-doctors-room',
@@ -31,9 +32,7 @@ export class DoctorsRoomComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.route.params.subscribe((params) => {
-      this.verificationCode = params['verificationCode'];
-    });
+    this.verificationCode = generateRandomString(5); // todo aro i78rl69D get from sms or link server db
 
     await this.loadQueueCount();
     await this.loadQueueNumberAndOrderIndex();
