@@ -1,0 +1,45 @@
+@import "src/styles";
+
+.page07 {
+   margin-top: 202px;
+  //margin-top: 35vh;
+}
+
+.name-title {
+  margin-bottom: 8px;
+  text-align: center;
+  color: $main-color;
+}
+
+.description-subtitle {
+  text-align: center;
+  margin-top: 16px;
+  padding: 0 20px;
+  color: $second-color;
+  padding: 0 33px;
+}
+
+.logo-icon {
+  display: block;
+  margin: 0 auto;
+  width: 77px;
+}
+
+.logo-icon img {
+  width: 100%;
+}
+
+.description-subtitle {
+  text-align: center;
+  margin-top: 16px;
+  padding: 0 20px;
+  color: $second-color;
+  padding: 0 33px;
+}
+
+.vector-bottom {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: -100;
+}
