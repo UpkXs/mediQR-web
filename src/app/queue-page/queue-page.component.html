@@ -53,6 +53,11 @@
   [queueId]="queueId"
   [verificationCode]="verificationCode"
   (canceled)="cancel()"
+  (approved)="approve($event)"
+  [subTitle]="'Are you sure?'"
+  [description]="'You will lose your place in the queue'"
+  [cancelBtnText]="'Cancel'"
+  [approveBtnText]="'Leave'"
 >
 </mediQR-overlay>
 
@@ -66,10 +71,23 @@
 </mediQR-your-turn-overlay>
 
 <mediQR-your-turn-overlay
-  *ngIf="isEnableNotificationDialogOpen"
+  *ngIf="isEnableNotificationDialogOpen && !isFirstTimeToNotification"
   [subTitle]="'Notification enabled!'"
   [description]="'Now all activities will be displayed through the notification'"
   [buttonText]="'Got it!'"
   (cleared)="gotIt()"
 >
 </mediQR-your-turn-overlay>
+
+<mediQR-overlay
+  *ngIf="isFirstTimeToNotification && isClickedNotify"
+  [queueId]="queueId"
+  [verificationCode]="verificationCode"
+  (canceled)="cancelNotification()"
+  (approved)="approveNotification()"
+  [subTitle]="'Do you want to be notified?'"
+  [description]="'All actions will be displayed in the notification'"
+  [cancelBtnText]="'Disable'"
+  [approveBtnText]="'Enable'"
+>
+</mediQR-overlay>

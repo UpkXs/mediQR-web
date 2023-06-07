@@ -5,6 +5,7 @@ import {Queue} from "../../model/Queue";
 import {QueuePageController} from "../../controllers/QueuePageController";
 import {SubSink} from "../../utils/SubSink";
 import {tap} from "rxjs";
+import {QueuePageService} from "./queue-page.service";
 
 @Component({
   selector: 'mediQR-queue-page',
@@ -27,6 +28,8 @@ export class QueuePageComponent implements OnInit {
   isYourTurn: boolean = false;
   isYourTurnDialogOpen: boolean;
   isEnableNotificationDialogOpen: boolean;
+  isFirstTimeToNotification: boolean = true;
+  isClickedNotify: boolean = false;
 
   private readonly subs = new SubSink();
 
@@ -34,6 +37,7 @@ export class QueuePageComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     private readonly queuePageController: QueuePageController,
+    private readonly queuePageService: QueuePageService,
   ) { }
 
   ngOnInit() {
@@ -90,6 +94,12 @@ export class QueuePageComponent implements OnInit {
     this.delete = false;
   }
 
+  approve(queueId: string) {
+    this.delete = false;
+
+    this.queuePageService.leaveQueueAndLogout(queueId, this.verificationCode);
+  }
+
   isYourTurnNow() {
     this.isYourTurn = true;
     this.isYourTurnDialogOpen = true;
@@ -100,10 +110,28 @@ export class QueuePageComponent implements OnInit {
   }
 
   enableNotification() {
-    this.isEnableNotificationDialogOpen = true;
+    this.isClickedNotify = true;
+    if (this.isFirstTimeToNotification) {
+      this.isEnableNotificationDialogOpen = true;
+    } else {
+      this.isFirstTimeToNotification = false;
+      this.isEnableNotificationDialogOpen = true;
+    }
   }
 
   gotIt() {
     this.isEnableNotificationDialogOpen = false;
+    this.isFirstTimeToNotification = false;
+  }
+
+  cancelNotification() {
+    this.isClickedNotify = false;
+    this.isFirstTimeToNotification = true;
+    this.isEnableNotificationDialogOpen = false;
+  }
+
+  approveNotification() {
+    this.isFirstTimeToNotification = false;
+    this.isEnableNotificationDialogOpen = true;
   }
 }
