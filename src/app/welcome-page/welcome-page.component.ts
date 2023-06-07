@@ -134,6 +134,6 @@ export class WelcomePageComponent implements OnInit {
     this.queuePageService.reason = this.reason;
     this.queuePageService.queueCount = this.queueCount;
     this.queuePageService.queueCountWithoutMe = this.queueCountWithoutMe;
-    this.router.navigate(['/queue-page']).then();
+    this.router.navigate(['/queue-page', this.queueId]).then();
   }
 }

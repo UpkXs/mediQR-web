@@ -20,6 +20,7 @@ export class ProgressBarComponent {
   tempValue = 0;
   currentPercent = 0;
   currentMinute: string;
+  currentMinuteToShow: string;
   isQueueSoon: boolean = false;
 
   constructor(
@@ -38,9 +39,26 @@ export class ProgressBarComponent {
 
     this.currentPercent = 0;
 
+    const progressValueS = localStorage.getItem('progress-bar-progressValue-' + this.queueId);
+    const currentPercentS = localStorage.getItem('progress-bar-currentPercent-' + this.queueId);
+    const currentMinuteS = localStorage.getItem('progress-bar-currentMinute-' + this.queueId);
+    const currentMinuteToShowS = localStorage.getItem('progress-bar-currentMinuteToShow-' + this.queueId);
+    const secS = localStorage.getItem('progress-bar-sec-' + this.queueId);
+
+    if (progressValueS && currentPercentS && currentMinuteS && currentMinuteToShowS) {
+      this.progressValue = Number(progressValueS);
+      this.currentPercent = Number(currentPercentS);
+      this.currentMinute = currentMinuteS;
+      this.currentMinuteToShow = currentMinuteToShowS;
+    }
+
     const timer$ = interval(100);
 
     const sub = timer$.subscribe((sec) => {
+
+      if (secS) {
+        sec = Number(secS) + sec;
+      }
 
       if (this.numberOfPeople === 0) {
         this.isQueueSoon = true;
@@ -57,21 +75,20 @@ export class ProgressBarComponent {
       this.currentMinute = ((this.progressEndValue - (sec * 100)) / 60).toFixed(0);
 
       if (this.currentMinute.length === 5) {
-        this.currentMinute = this.currentMinute.charAt(0) + this.currentMinute.charAt(1);
+        this.currentMinuteToShow = this.currentMinute.charAt(0) + this.currentMinute.charAt(1);
       } else if (this.currentMinute.length === 4) {
-        this.currentMinute = this.currentMinute.charAt(0);
+        this.currentMinuteToShow = this.currentMinute.charAt(0);
       } else {
-        this.currentMinute = '1';
+        this.currentMinuteToShow = '1';
       }
 
       this.progressValue = Number.parseFloat((this.progressValue + 0.1).toFixed(1));
 
-      // localStorage.setItem('progressValue', this.progressValue.toString());
-      // localStorage.setItem('currentPercent', this.currentPercent.toString());
-      // const progressValueS = localStorage.getItem('progressValue');
-      // const currentPercentS = localStorage.getItem('currentPercent');
-      // console.log('n0AM1wk1 :: progressValueS : ', progressValueS)
-      // console.log('e2efC3Jr :: currentPercentS : ', currentPercentS)
+      localStorage.setItem('progress-bar-progressValue-' + this.queueId, String(this.progressValue));
+      localStorage.setItem('progress-bar-currentPercent-' + this.queueId, String(this.currentPercent));
+      localStorage.setItem('progress-bar-currentMinute-' + this.queueId, this.currentMinute);
+      localStorage.setItem('progress-bar-currentMinuteToShow-' + this.queueId, this.currentMinuteToShow);
+      localStorage.setItem('progress-bar-sec-' + this.queueId, String(sec));
 
       if ((this.progressValue / this.tempValue).toFixed(0) === (this.currentPercent + 1).toString()) {
         this.currentPercent += 1;
