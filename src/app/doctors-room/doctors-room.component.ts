@@ -39,6 +39,15 @@ export class DoctorsRoomComponent implements OnInit {
     await this.loadQueueNumberAndOrderIndex();
   }
 
+  ngAfterViewInit() {
+    const storedValue = localStorage.getItem('previousCalledQueueNumber');
+    if (storedValue) {
+      this.previousCalledQueueNumber = storedValue;
+    } else {
+      this.previousCalledQueueNumber = '000';
+    }
+  }
+
   async loadQueueCount() {
     this.subs.sink = await this.queuePageController.loadQueueCount().pipe(
       tap((count) => {
@@ -109,6 +118,10 @@ export class DoctorsRoomComponent implements OnInit {
 
   async changePrevQueueAndCallNextOne() {
     this.previousCalledQueueNumber = this.currentCalledQueueNumber.toString();
+
+    localStorage.setItem('previousCalledQueueNumber', this.previousCalledQueueNumber);
+    const storedValue = localStorage.getItem('previousCalledQueueNumber');
+
 
     this.subs.sink = await this.queuePageController.setIsYourTurn(this.currentCalledQueueNumber).pipe(
       tap(() => {
