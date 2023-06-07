@@ -23,6 +23,10 @@ export class QueuePageController {
     return this.http.post<number>(this.api + '/load-queue-count-without-me/queueId', queueId);
   }
 
+  loadFrontMeQueueCountWithoutMe(queueId: string): Observable<number> {
+    return this.http.post<number>(this.api + '/load-front-me-queue-count-without-me/queueId', queueId);
+  }
+
   leaveQueueById(queueId: string): Observable<number> {
     return this.http.post<number>(this.api + '/leave-queue-by-id/queueId', queueId);
   }
