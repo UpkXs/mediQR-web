@@ -24,6 +24,8 @@ export class DoctorsRoomComponent implements OnInit {
   isCallByNumber: boolean = false;
   isRemoveVisitors: boolean = false;
 
+  previousCalledLocalStorageCode: string;
+
   private readonly subs = new SubSink();
 
   constructor(
@@ -34,12 +36,14 @@ export class DoctorsRoomComponent implements OnInit {
   async ngOnInit() {
     this.verificationCode = generateRandomString(5); // todo aro i78rl69D get from sms or link server db
 
+    this.previousCalledLocalStorageCode = 'previousCalledQueueNumber-' + this.verificationCode;
+
     await this.loadQueueCount();
     await this.loadQueueNumberAndOrderIndex();
   }
 
   ngAfterViewInit() {
-    const storedValue = localStorage.getItem('previousCalledQueueNumber');
+    const storedValue = localStorage.getItem(this.previousCalledLocalStorageCode);
     if (storedValue) {
       this.previousCalledQueueNumber = storedValue;
     } else {
@@ -118,9 +122,7 @@ export class DoctorsRoomComponent implements OnInit {
   async changePrevQueueAndCallNextOne() {
     this.previousCalledQueueNumber = this.currentCalledQueueNumber.toString();
 
-    localStorage.setItem('previousCalledQueueNumber', this.previousCalledQueueNumber);
-    const storedValue = localStorage.getItem('previousCalledQueueNumber');
-
+    localStorage.setItem(this.previousCalledLocalStorageCode, this.previousCalledQueueNumber);
 
     this.subs.sink = await this.queuePageController.setIsYourTurn(this.currentCalledQueueNumber).pipe(
       tap(() => {
