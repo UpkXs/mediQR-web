@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {generateRandomNumber, generateRandomString} from "../../utils/GenerateRandomString";
+import {generateQueueNumber, generateRandomNumber, generateRandomString} from "../../utils/GenerateRandomString";
 import {Queue} from "../../model/Queue";
 import {QueuePageController} from "../../controllers/QueuePageController";
 import {SubSink} from "../../utils/SubSink";
-import {tap} from "rxjs";
+import {take, tap} from "rxjs";
 import {QueuePageService} from "./queue-page.service";
 
 @Component({
@@ -40,14 +40,23 @@ export class QueuePageComponent implements OnInit {
     private readonly queuePageService: QueuePageService,
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.verificationCode = params['verificationCode'];
       this.reason = params['reason'];
     });
 
     this.queueId = generateRandomString(10);
-    this.queueNumber = generateRandomNumber(3);
+
+    await this.queuePageController.loadAllQueueCount().pipe(
+      tap((count) => {
+        this.queueNumber = count;
+      }),
+      take(1) // Take only the first emitted value
+    ).toPromise(); // Convert the observable to a promise and await it
+
+    this.queueNumber = generateQueueNumber(this.queueNumber);
+
     this.queueCode = generateRandomNumber(6);
 
     this.addQueueAndLoadQueueCounts();

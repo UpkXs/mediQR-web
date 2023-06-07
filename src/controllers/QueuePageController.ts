@@ -42,4 +42,8 @@ export class QueuePageController {
   removeQueuesByNumber(queueNumbers: number[]): Observable<number> {
     return this.http.post<number>(this.api + '/remove-queues-by-number/queueNumbers', queueNumbers);
   }
+
+  loadAllQueueCount(): Observable<number> {
+    return this.http.post<number>(this.api + '/load-all-queue-count', {}, {});
+  }
 }
