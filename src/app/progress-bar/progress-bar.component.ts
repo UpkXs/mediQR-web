@@ -84,6 +84,6 @@ export class ProgressBarComponent {
   };
 
   getWaitingTime(): number {
-    return this.numberOfPeople * 5; // for each person gives 5 minutes
+    return this.numberOfPeople * 2; // for each person gives 2 minutes
   }
 }
