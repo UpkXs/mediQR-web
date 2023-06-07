@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
 import {interval} from "rxjs";
 import {QueuePageService} from "../queue-page/queue-page.service";
 
@@ -20,7 +20,7 @@ export class ProgressBarComponent {
   tempValue = 0;
   currentPercent = 0;
   currentMinute: string;
-  currentMinuteToShow: string;
+  currentMinuteToShow: string = '1';
   isQueueSoon: boolean = false;
 
   constructor(
@@ -74,12 +74,18 @@ export class ProgressBarComponent {
 
       this.currentMinute = ((this.progressEndValue - (sec * 100)) / 60).toFixed(0);
 
-      if (this.currentMinute.length === 5) {
-        this.currentMinuteToShow = this.currentMinute.charAt(0) + this.currentMinute.charAt(1);
-      } else if (this.currentMinute.length === 4) {
-        this.currentMinuteToShow = this.currentMinute.charAt(0);
-      } else {
+      if (Number(this.currentMinute) < 0) {
+        console.log('2ts9yJcJ :: this.currentMinuteToShow < 0 : ', this.currentMinuteToShow);
         this.currentMinuteToShow = '1';
+        console.log('2ts9yJcJ :: this.currentMinuteToShow : ', this.currentMinuteToShow);
+      } else {
+        if (this.currentMinute.length === 5) {
+          this.currentMinuteToShow = this.currentMinute.charAt(0) + this.currentMinute.charAt(1);
+        } else if (this.currentMinute.length === 4) {
+          this.currentMinuteToShow = this.currentMinute.charAt(0);
+        } else {
+          this.currentMinuteToShow = '1';
+        }
       }
 
       this.progressValue = Number.parseFloat((this.progressValue + 0.1).toFixed(1));
@@ -99,15 +105,24 @@ export class ProgressBarComponent {
           ')';
       }
 
+      if (Number(this.currentMinuteToShow) < 0) {
+        console.log('2ts9yJcJ :: this.currentMinuteToShow < 0 : ', this.currentMinuteToShow);
+        this.currentMinuteToShow = '1';
+        console.log('2ts9yJcJ :: this.currentMinuteToShow : ', this.currentMinuteToShow);
+      }
+
       if (this.progressValue === this.progressEndValue / 1000) {
         this.isQueueSoon = true;
         console.log("ve88IfBbh9 :: this.isQueueSoon : ", this.isQueueSoon);
+
+        localStorage.setItem('progress-bar-progressValue-' + this.queueId, String(this.progressEndValue));
+
         sub.unsubscribe();
       }
     });
   };
 
   getWaitingTime(): number {
-    return this.numberOfPeople * 2; // for each person gives 2 minutes
+    return this.numberOfPeople * 1; // for each person gives 2 minutes
   }
 }
