@@ -69,17 +69,6 @@ export class AdminPanelComponent implements OnInit {
     this.isOpenPopover = !this.isOpenPopover;
   }
 
-  // getReasonsToVisit(): Reason[] {
-  //   let reasonsToVisit: Reason[] = []; // Initialize as an empty array
-  //   this.reasonsToVisitMap.forEach((name, id) => {
-  //     let reason: Reason = { id: id, name: name }; // Create a new reason object for each iteration
-  //     console.log('01sEUN5G :: ', reason);
-  //     reasonsToVisit.push(reason);
-  //   });
-  //   return reasonsToVisit;
-  // }
-
-
   addToList(id: string) {
     console.log('CU88f3u1 :: ', id);
     this.reasonsToVisit.push(id);

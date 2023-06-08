@@ -1,0 +1,62 @@
+@import "src/styles";
+.logo-icon {
+  display: block;
+  margin: 0 auto;
+  width: 77px;
+}
+
+.logo-icon img {
+  width: 100%;
+}
+
+.vector-top {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.vector-bottom {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: -100;
+}
+
+.page05 {
+  // margin-top: 133px;
+  margin-top: 26vh;
+}
+
+.done-title {
+  margin-top: 16px;
+  text-align: center;
+  color: $main-color;
+}
+
+.done {
+  width: 259px;
+  margin: 12px auto 0 auto;
+}
+
+.done-subtitle {
+  text-align: center;
+  color: $second-color;
+  word-wrap: break-word;
+  a {
+    color: #37B5F9;
+  }
+}
+
+.copy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.copy-btn {
+  color: $white;
+  height: 42px;
+  width: 186px;
+  text-align: center;
+  margin-top: 12px;
+}

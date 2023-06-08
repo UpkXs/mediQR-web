@@ -14,4 +14,8 @@ export class RoomController {
   addRoom(room: Room): Observable<number> {
     return this.http.post<number>(this.api + '/addRoom/room', room);
   }
+
+  getRoomByVerificationCode(verificationCode: string): Observable<Room> {
+    return this.http.post<Room>(this.api + '/get-room-by-verification-code/verificationCode', verificationCode);
+  }
 }
