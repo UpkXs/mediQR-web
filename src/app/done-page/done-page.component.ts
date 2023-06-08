@@ -34,7 +34,7 @@ export class DonePageComponent implements OnInit {
 
     await this.getRoomByVerificationCode();
 
-    console.log('Regn9aOD :: this.room : ', this.room);
+    console.log('OeYyIXrI :: this.room : ', this.room);
   }
 
   async getRoomLinksByVerificationCode() {

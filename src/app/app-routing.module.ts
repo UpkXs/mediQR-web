@@ -10,7 +10,7 @@ import {DonePageComponent} from "./done-page/done-page.component";
 const routes: Routes = [
   { path: 'welcome-page', component: WelcomePageComponent},
   { path: 'queue-page/:queueId', component: QueuePageComponent},
-  { path: 'doctors-room', component: DoctorsRoomComponent},
+  { path: 'doctors-room/:verificationCode', component: DoctorsRoomComponent},
   { path: 'logout-page', component: LogoutPageComponent},
   { path: 'admin-panel', component: AdminPanelComponent},
   { path: 'done-page', component: DonePageComponent},

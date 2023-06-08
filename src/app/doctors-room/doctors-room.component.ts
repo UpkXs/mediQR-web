@@ -34,7 +34,12 @@ export class DoctorsRoomComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.verificationCode = generateRandomString(5); // todo aro i78rl69D get from sms or link server db
+    this.route.paramMap.subscribe(params => {
+      const verificationCodeS  = params.get('verificationCode');
+      if (verificationCodeS) {
+        this.verificationCode = verificationCodeS;
+      }
+    });
 
     this.previousCalledLocalStorageCode = 'previousCalledQueueNumber-' + this.verificationCode;
 
