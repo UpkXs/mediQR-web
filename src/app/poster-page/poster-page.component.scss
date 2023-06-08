@@ -1,0 +1,49 @@
+@import "src/styles";
+
+.page06 {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.line-wrapper {
+  margin: 0 auto;
+  width: 730px;
+}
+
+.line-subtitle {
+  color: $main-color;
+  text-align: center;
+}
+
+.line-title {
+  color: $main-color;
+  text-align: center;
+  word-wrap: break-word;
+  margin-top: 16px;
+}
+
+.qr-block {
+  position: relative;
+  margin-top: 12px;
+  background-color: $active-blue;
+  height: 828px;
+  border-radius: 56px;
+
+  &__white-bkg {
+    position: absolute;
+    margin: 48px 48px;
+    width: 634px;
+    height: 634px;
+    background-color: $white;
+    border-radius: 56px;
+  }
+  &__qr {
+    padding: 17px;
+  }
+  &__text {
+    position: relative;
+    top: 730px;
+    color: $white;
+    text-align: center;
+  }
+}

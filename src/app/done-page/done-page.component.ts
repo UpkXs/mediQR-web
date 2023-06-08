@@ -5,6 +5,8 @@ import {take, tap} from "rxjs";
 import {RoomLinksController} from "../../controllers/RoomLinksController";
 import {RoomController} from "../../controllers/RoomController";
 import {Room} from "../../model/Room";
+import {RoomLinks} from "../../model/RoomLinks";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'mediQR-done-page',
@@ -18,11 +20,14 @@ export class DonePageComponent implements OnInit {
   roomLink: string = 'https://mediqr.kz/algamed/room/7X1wi/F_yLzLA-27TRzma--XEAR';
 
   room: Room;
+  roomLinks: RoomLinks;
+  roomInfo: string;
 
   verificationCode: string;
 
   constructor(
     private readonly donePageService: DonePageService,
+    private readonly router: Router,
     private readonly roomLinksController: RoomLinksController,
     private readonly roomController: RoomController,
   ) { }
@@ -35,6 +40,7 @@ export class DonePageComponent implements OnInit {
     await this.getRoomByVerificationCode();
 
     console.log('OeYyIXrI :: this.room : ', this.room);
+    this.roomInfo = this.room.name + ' ' + this.room.surname + ' ' + this.room.patronymic;
   }
 
   async getRoomLinksByVerificationCode() {
@@ -44,6 +50,13 @@ export class DonePageComponent implements OnInit {
           this.qrLink = roomLinks.qrLink;
           this.qrPoster = roomLinks.qrPoster;
           this.roomLink = roomLinks.roomLink;
+
+          this.roomLinks = {
+            verificationCode: this.verificationCode,
+            qrLink: this.qrLink,
+            qrPoster: this.qrPoster,
+            roomLink: this.roomLink
+          }
         }),
         take(1)
       ).toPromise();
@@ -59,4 +72,11 @@ export class DonePageComponent implements OnInit {
       ).toPromise();
   }
 
+  navigateToPoster() {
+
+    this.donePageService.room = this.room;
+    this.donePageService.roomLinks = this.roomLinks;
+
+    this.router.navigate(['/poster-page']).then();
+  }
 }

@@ -17,6 +17,7 @@ import { RemoveVisitorsComponent } from './remove-visitors/remove-visitors.compo
 import { LogoutPageComponent } from './logout-page/logout-page.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { DonePageComponent } from './done-page/done-page.component';
+import { PosterPageComponent } from './poster-page/poster-page.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { DonePageComponent } from './done-page/done-page.component';
     RemoveVisitorsComponent,
     LogoutPageComponent,
     AdminPanelComponent,
-    DonePageComponent
+    DonePageComponent,
+    PosterPageComponent
   ],
   imports: [
     BrowserModule,
