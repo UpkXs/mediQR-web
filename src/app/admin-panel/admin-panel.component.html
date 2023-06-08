@@ -1,0 +1,167 @@
+<div class="page04">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="logo-icon">
+          <img src="assets/icons/logo_icon.svg" alt="logo_icon">
+        </div>
+
+        <div class="create-title title title_fw700 title_fw700_fz20">Creating an e-queue</div>
+        <div class="form">
+          <form id="form" action="page05.html">
+            <div class="form__input">
+              <input
+                class="title title_fw400 title_fw400_fz16"
+                type="text"
+                [ngModelOptions]="{ standalone: true }"
+                placeholder="Name"
+                [(ngModel)]="name"
+              >
+              <div
+                *ngIf="name === undefined"
+                class="error">
+              </div>
+            </div>
+            <div class="form__input">
+              <input
+                class="title title_fw400 title_fw400_fz16"
+                type="text"
+                [ngModelOptions]="{ standalone: true }"
+                placeholder="Surname"
+                [(ngModel)]="surname"
+              >
+              <div
+                *ngIf="surname === undefined"
+                class="error">
+              </div>
+            </div>
+            <div class="form__input">
+              <input
+                class="title title_fw400 title_fw400_fz16"
+                type="text"
+                [ngModelOptions]="{ standalone: true }"
+                placeholder="Patronymic"
+                [(ngModel)]="patronymic"
+              >
+              <div
+                *ngIf="patronymic === undefined"
+                class="error">
+              </div>
+            </div>
+            <div class="form__input">
+              <input
+                class="title title_fw400 title_fw400_fz16"
+                type="text"
+                [ngModelOptions]="{ standalone: true }"
+                placeholder="87077077070"
+                [(ngModel)]="phoneNumber"
+              >
+              <div
+                *ngIf="phoneNumber === undefined || phoneNumber.toString.length !== 11"
+                class="error">
+              </div>            </div>
+            <div class="form__input">
+              <input
+                class="title title_fw400 title_fw400_fz16"
+                type="text"
+                [ngModelOptions]="{ standalone: true }"
+                placeholder="Room number"
+                [(ngModel)]="roomNumber"
+              >
+              <div
+                *ngIf="roomNumber === undefined"
+                class="error">
+              </div>
+            </div>
+            <div
+              class="form__input form__input_dropdown"
+              (click)="openDropdown()"
+              [class.active]="isOpenPopover"
+            >
+              <input
+                class="dropbtn title title_fw400 title_fw400_fz16"
+                type="text"
+                id="reasons"
+                placeholder="Reasons to visit"
+                readonly>
+              <div class="error"></div>
+
+              <div class="dropdown-content title title_fw400 title_fw400_fz16" >
+                <div class="form-group">
+                  <label
+                    class="title title_fw400 title_fw400_fz16"
+                    (click)="addToList('ot6hO0w25x')"
+                  >
+                    Doctor's appointment
+                    <input type="checkbox" class="real-checkbox">
+                    <span class="custom-checkbox"></span>
+                  </label>
+                </div>
+                <div class="form-group">
+                  <label
+                    class="title title_fw400 title_fw400_fz16"
+                    (click)="addToList('wzHuT2M7gs')"
+                  >
+                    Analyzes
+                    <input type="checkbox" class="real-checkbox">
+                    <span class="custom-checkbox"></span>
+                  </label>
+                </div>
+                <div class="form-group">
+                  <label
+                    class="title title_fw400 title_fw400_fz16"
+                    (click)="addToList('a72b5SkBpI')"
+                  >
+                    Ultrasound
+                    <input type="checkbox" class="real-checkbox">
+                    <span class="custom-checkbox"></span>
+                  </label>
+                </div>
+                <div class="form-group">
+                  <label
+                    class="title title_fw400 title_fw400_fz16"
+                    (click)="addToList('s7xhlBna8p')"
+                  >
+                    X-Ray
+                    <input type="checkbox" class="real-checkbox">
+                    <span class="custom-checkbox"></span>
+                  </label>
+                </div>
+                <div class="form-group">
+                  <label
+                    class="title title_fw400 title_fw400_fz16"
+                    (click)="addToList('K2qoGiz255')"
+                  >
+                    Certificate of illness
+                    <input type="checkbox" class="real-checkbox">
+                    <span class="custom-checkbox"></span>
+                  </label>
+                </div>
+                <div class="form-group">
+                  <label
+                    class="title title_fw400 title_fw400_fz16"
+                    (click)="addToList('5K9zQ70iw7')"
+                  >
+                    Sick leave
+                    <input type="checkbox" class="real-checkbox">
+                    <span class="custom-checkbox"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form">
+              <button
+                class="form__btn button title title_fw500 title_fw500_fz16"
+                type="submit"
+                (click)="save()"
+              >
+                Create
+              </button>
+            </div>
+          </form>
+
+      </div>
+    </div>
+  </div>
+</div>

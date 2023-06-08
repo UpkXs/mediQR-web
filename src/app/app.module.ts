@@ -15,6 +15,8 @@ import { YourTurnOverlayComponent } from './your-turn-overlay/your-turn-overlay.
 import { CallByNumberComponent } from './call-by-number/call-by-number.component';
 import { RemoveVisitorsComponent } from './remove-visitors/remove-visitors.component';
 import { LogoutPageComponent } from './logout-page/logout-page.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { DonePageComponent } from './done-page/done-page.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { LogoutPageComponent } from './logout-page/logout-page.component';
     YourTurnOverlayComponent,
     CallByNumberComponent,
     RemoveVisitorsComponent,
-    LogoutPageComponent
+    LogoutPageComponent,
+    AdminPanelComponent,
+    DonePageComponent
   ],
   imports: [
     BrowserModule,
