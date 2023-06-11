@@ -9,7 +9,7 @@ import {DonePageComponent} from "./done-page/done-page.component";
 import {PosterPageComponent} from "./poster-page/poster-page.component";
 
 const routes: Routes = [
-  { path: 'welcome-page', component: WelcomePageComponent},
+  { path: 'welcome-page/:verificationCode', component: WelcomePageComponent},
   { path: 'queue-page/:queueId', component: QueuePageComponent},
   { path: 'doctors-room/:verificationCode', component: DoctorsRoomComponent},
   { path: 'logout-page', component: LogoutPageComponent},

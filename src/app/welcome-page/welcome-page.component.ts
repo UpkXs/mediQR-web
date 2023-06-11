@@ -41,7 +41,13 @@ export class WelcomePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.verificationCode = generateRandomString(5); // todo aro zKFxBU0E get from sms or link server db
+    this.route.paramMap.subscribe(params => {
+      const verificationCodeS  = params.get('verificationCode');
+      if (verificationCodeS) {
+        this.verificationCode = verificationCodeS;
+      }
+    });
+    // this.verificationCode = generateRandomString(5); // todo aro zKFxBU0E get from sms or link server db
     console.log('yEv0O8Le :: this.verificationCode : ', this.verificationCode);
     this.loadReasons();
   }

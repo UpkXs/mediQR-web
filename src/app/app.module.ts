@@ -18,6 +18,7 @@ import { LogoutPageComponent } from './logout-page/logout-page.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { DonePageComponent } from './done-page/done-page.component';
 import { PosterPageComponent } from './poster-page/poster-page.component';
+import {QRCodeModule} from "angular2-qrcode";
 
 @NgModule({
   declarations: [
@@ -36,12 +37,13 @@ import { PosterPageComponent } from './poster-page/poster-page.component';
     DonePageComponent,
     PosterPageComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        QRCodeModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

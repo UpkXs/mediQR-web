@@ -12,6 +12,7 @@ export class PosterPageComponent implements OnInit {
 
   room: Room;
   roomLinks: RoomLinks;
+  link: string;
 
   constructor(
     private readonly donePageService: DonePageService,
@@ -21,6 +22,8 @@ export class PosterPageComponent implements OnInit {
 
     this.room = this.donePageService.room;
     this.roomLinks = this.donePageService.roomLinks;
+
+    this.link = 'http://172.20.10.2:4200/welcome-page/'
 
     console.log('6r4iTd44 :: ', this.room);
     console.log('6r4iTd44 :: ', this.roomLinks);

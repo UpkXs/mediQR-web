@@ -103,6 +103,7 @@ export class QueuePageComponent implements OnInit {
 
   clear() {
     this.isYourTurnDialogOpen = false;
+    this.router.navigate(['/logout-page']).then();
   }
 
   enableNotification() {
